@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
     public UnityEngine.UI.Button[] p_Button;
     public UnityEngine.UI.Button exit_Button;
+    public GameObject mb;
 
     public void p_ButtonDisable()
     {
@@ -18,6 +19,11 @@ public class ButtonManager : MonoBehaviour
     {
         foreach (UnityEngine.UI.Button b in p_Button)
             b.interactable = true;
+    }
+
+    public void p_MagicButtonActivate(bool tf)
+    {
+        mb.SetActive(tf);
     }
 
     public void PauseGame()

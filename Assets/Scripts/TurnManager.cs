@@ -30,61 +30,7 @@ public class TurnManager : MonoBehaviour
 
     void Start()
     {
-        round = roundDefault;
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        
-        for (int i = 0; i < box.Length; i++)
-        {
-            //Debug.Log(this.gameObject.transform.GetChild(i).gameObject);
-            box[i] = this.gameObject.transform.GetChild(i).gameObject;
-        }
-
-        if (GameObject.FindGameObjectWithTag("Enemy1"))
-        {
-            participant.Add(GameObject.FindGameObjectWithTag("Enemy1"));
-            psList.Add(participant[lc].GetComponent<Status>());
-            e_speed.Add(psList[lc].GetSpeed());
-            boxAmount++;
-            lc++;
-        }
-
-        if (GameObject.FindGameObjectWithTag("Enemy2"))
-        {
-            participant.Add(GameObject.FindGameObjectWithTag("Enemy2"));
-            psList.Add(participant[lc].GetComponent<Status>());
-            e_speed.Add(psList[lc].GetSpeed());
-            boxAmount++;
-            lc++;
-        }
-
-        if (GameObject.FindGameObjectWithTag("Enemy3"))
-        {
-            participant.Add(GameObject.FindGameObjectWithTag("Enemy3"));
-            psList.Add(participant[lc].GetComponent<Status>());
-            e_speed.Add(psList[lc].GetSpeed());
-            boxAmount++;
-            lc++;
-        }
-
-        if (GameObject.FindGameObjectWithTag("Enemy4"))
-        {
-            participant.Add(GameObject.FindGameObjectWithTag("Enemy4"));
-            psList.Add(participant[lc].GetComponent<Status>());
-            e_speed.Add(psList[lc].GetSpeed());
-            boxAmount++;
-            lc++;
-        }
-
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            participant.Add(GameObject.FindGameObjectWithTag("Player"));
-            psList.Add(participant[lc].GetComponent<Status>());
-            e_speed.Add(psList[lc].GetSpeed());
-            lc++;
-        }
-        for (int i = 0; i < lc; i++)
-            knockUpCount.Add(0);
-        SpeedGen();
+        TurnManagerStrat();
     }
 
     public void SpeedGen()
@@ -117,8 +63,8 @@ public class TurnManager : MonoBehaviour
         for (int i = 0; i < boxAmount; i++)
         {
             GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
-            ob.transform.parent = this.gameObject.transform;
-            ob.transform.position = box[i].transform.position;
+                ob.transform.SetParent(this.gameObject.transform, true);
+                ob.transform.position = box[i].transform.position;
             ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
             sortedBox.Add(ob);
         }
@@ -205,7 +151,10 @@ public class TurnManager : MonoBehaviour
             //Debug.Log(sortedList[0].go.tag + " Turn Start");
             //TurnEnd();
         }
-        catch (Exception e) { Debug.Log("TurnStart Error in TurnManager "+e); }
+        catch (Exception e) 
+        { 
+            Debug.Log("TurnStart Error in TurnManager "+e);
+        }
         
             
     }
@@ -260,6 +209,85 @@ public class TurnManager : MonoBehaviour
             go.GetComponent<Status>().IsItDying(true);
         }
         SpeedCount();
+    }
+
+    public void TurnManagerStrat()
+    {
+        participant = new List<GameObject>();
+        psList = new List<Status>();
+
+        e_speed = new List<int>();
+        p_speed = new List<int>();
+        lc = 0;
+
+        sortedList = new List<ObjectAndTime>();
+        //public List<GameObject> test = new List<GameObject>();
+        otList = new List<ObjectAndTime>();
+
+        box = new GameObject[8];
+        sortedBox = new List<GameObject>();
+        boxAmount = 4;
+        knockUpCount = new List<int>();
+
+        roundDefault = 250;
+        int round;
+        int roundCount = 0;
+
+        round = roundDefault;
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        for (int i = 0; i < box.Length; i++)
+        {
+            //Debug.Log(this.gameObject.transform.GetChild(i).gameObject);
+            box[i] = this.gameObject.transform.GetChild(i).gameObject;
+        }
+
+        if (GameObject.FindGameObjectWithTag("Enemy1"))
+        {
+            participant.Add(GameObject.FindGameObjectWithTag("Enemy1"));
+            psList.Add(participant[lc].GetComponent<Status>());
+            e_speed.Add(psList[lc].GetSpeed());
+            boxAmount++;
+            lc++;
+        }
+
+        if (GameObject.FindGameObjectWithTag("Enemy2"))
+        {
+            participant.Add(GameObject.FindGameObjectWithTag("Enemy2"));
+            psList.Add(participant[lc].GetComponent<Status>());
+            e_speed.Add(psList[lc].GetSpeed());
+            boxAmount++;
+            lc++;
+        }
+
+        if (GameObject.FindGameObjectWithTag("Enemy3"))
+        {
+            participant.Add(GameObject.FindGameObjectWithTag("Enemy3"));
+            psList.Add(participant[lc].GetComponent<Status>());
+            e_speed.Add(psList[lc].GetSpeed());
+            boxAmount++;
+            lc++;
+        }
+
+        if (GameObject.FindGameObjectWithTag("Enemy4"))
+        {
+            participant.Add(GameObject.FindGameObjectWithTag("Enemy4"));
+            psList.Add(participant[lc].GetComponent<Status>());
+            e_speed.Add(psList[lc].GetSpeed());
+            boxAmount++;
+            lc++;
+        }
+
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            participant.Add(GameObject.FindGameObjectWithTag("Player"));
+            psList.Add(participant[lc].GetComponent<Status>());
+            e_speed.Add(psList[lc].GetSpeed());
+            lc++;
+        }
+        for (int i = 0; i < lc; i++)
+            knockUpCount.Add(0);
+        SpeedGen();
     }
 
     GameObject findChildFromParent(string parentName, string childNameToFind)

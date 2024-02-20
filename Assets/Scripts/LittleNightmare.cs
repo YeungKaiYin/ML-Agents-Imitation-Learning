@@ -14,7 +14,10 @@ public class LittleNightmare : MonoBehaviour
     public List<GameObject> skillSetList = new List<GameObject>();
     //GameObject aCollider;
     bool airMode = false;
+    string mode = "Middle";
     GameManager gm;
+    Status sm;
+    ModeSwitch ms;
     bool myTurn = false;
     //private void Awake()
     //{
@@ -26,6 +29,8 @@ public class LittleNightmare : MonoBehaviour
     void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        sm = gameObject.GetComponent<Status>();
+        ms = GameObject.FindGameObjectWithTag("ModeSwitch").GetComponent<ModeSwitch>();
         gameObject.name = "LittleNightmare";
         ChangeStatue();
         foreach (GameObject obj in skillSetList)
@@ -57,7 +62,7 @@ public class LittleNightmare : MonoBehaviour
         try
         {
             //StatusManager sm = GameObject.FindGameObjectWithTag("LittleNightmare").GetComponent<StatusManager>();
-            Status sm = gameObject.GetComponent<Status>();
+            //Status sm = gameObject.GetComponent<Status>();
             hp = (sm.GetCon() + sm.GetSiz());
             tou = (sm.GetCon() + sm.GetSiz()) * 1;
             sm.SetHp(hp);
@@ -77,6 +82,12 @@ public class LittleNightmare : MonoBehaviour
         gm.AimTheTarget_False();
     }
 
+    public void ModeSwitch(string mode)
+    {
+        this.mode = mode;
+        gm.AimTheTarget_False();
+    }
+
     public bool IsitAirMode()
     {
         return airMode;
@@ -87,49 +98,69 @@ public class LittleNightmare : MonoBehaviour
         // 
         //do some perpare action
         // 
-        if(airMode)
+        if(mode=="Lower")
         {
-            Status sm = gameObject.GetComponent<Status>();
+            //Status sm = gameObject.GetComponent<Status>();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            try
-            {
-                GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-                Debug.Log("dmg:" + dmg);
-                gm.ActionMark(dmg, t_dmg, 2,airMode,true);
-                //sm.IsItGrounded(false);
-            }
-            catch (Exception e) { Debug.Log(e); }
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Debug.Log("dmg:" + dmg);
+            gm.ActionMark(dmg, t_dmg, 2, true, true);
         }
-        else
+        else if(mode == "Middle")
         try
         {
-            Status sm = gameObject.GetComponent<Status>();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
-            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            try
-            {
-                GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-                Debug.Log("dmg:" + dmg);
-                gm.ActionMark(dmg,t_dmg,2);
-                //aCollider.SetActive(true);
-            }
-            catch (Exception e) { Debug.Log(e); }
+            //Status sm = gameObject.GetComponent<Status>();
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.3);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2);
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Debug.Log("dmg:" + dmg);
+            gm.ActionMark(dmg,t_dmg,2);
         }
         catch (Exception e) { Debug.Log(e); }
+        else if (mode == "Upper")
+            try
+            {
+                //Status sm = gameObject.GetComponent<Status>();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+                //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+                Debug.Log("dmg:" + dmg);
+                gm.ActionMark(dmg, t_dmg, 2);
+            }
+            catch (Exception e) { Debug.Log(e); }
 
-        
     }
 
-    public void AgentBladeAttack(int target)
+    public void AgentBladeAttack(String mode,int target)
     {
         try
         {
             Debug.Log("Agent Blade Attack");
-            Status sm = gameObject.GetComponent<Status>();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
-            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            gm.AgentActionMark(dmg, t_dmg, target);
+            //Status sm = gameObject.GetComponent<Status>();
+            this.mode = mode;
+            
+            if (mode == "Lower")
+            {
+                ms.Lower();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
+            if (mode == "Middle")
+            {
+                ms.Middle();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.3);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
+            if (mode == "Upper")
+            {
+                ms.Upper();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
         }
         catch (Exception e) { Debug.Log(e); }
     }
@@ -140,25 +171,33 @@ public class LittleNightmare : MonoBehaviour
         //do some perpare action
         // 
         
-        Status sm = gameObject.GetComponent<Status>();
+        //Status sm = gameObject.GetComponent<Status>();
         Debug.Log(sm.IsItGrounded());
-        if (airMode)
+        if (mode == "Lower")
         {
+            ms.Lower();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
             gm.SelfActionMark(1, 0);
         }
-        else
+        else if (mode == "Middle")
         {
+            ms.Middle();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
         }
-        
+        else if (mode == "Upper")
+        {
+            ms.Upper();
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+        }
+
         try
         {
-            GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Debug.Log("dmg:" + dmg);
-            if (airMode&&sm.IsItGrounded())
+            if (mode=="Lower"&sm.IsItGrounded())
             {
                 
                 if(sm.FocusStack()>0)
@@ -166,7 +205,7 @@ public class LittleNightmare : MonoBehaviour
                 else
                     gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, false);
             }
-            else if (airMode && !sm.IsItGrounded())
+            else if (mode == "Lower" && !sm.IsItGrounded())
             {
                 gm.ActionMark(dmg, t_dmg, 1, false, true);
             }
@@ -183,15 +222,31 @@ public class LittleNightmare : MonoBehaviour
         catch (Exception e) { Debug.Log(e); }
     }
 
-    public void AgentFistAttack(int target)
+    public void AgentFistAttack(String mode,int target)
     {
         try
         {
             Debug.Log("Agent Fist Attack");
-            Status sm = gameObject.GetComponent<Status>();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
-            gm.AgentActionMark(dmg, t_dmg, target);
+            //Status sm = gameObject.GetComponent<Status>();
+            this.mode = mode;
+            if (mode == "Lower")
+            {
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
+            if (mode == "Middle")
+            {
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
+            if (mode == "Upper")
+            {
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+                gm.AgentActionMark(dmg, t_dmg, target, mode);
+            }
         }
         catch (Exception e) { Debug.Log(e); }
     }
@@ -230,7 +285,7 @@ public class LittleNightmare : MonoBehaviour
             Status sm = gameObject.GetComponent<Status>();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            gm.AgentActionMark(dmg, t_dmg, target);
+            gm.AgentActionMark(dmg, t_dmg, target, "Middle");
         }
         catch (Exception e) { Debug.Log(e); }
     }

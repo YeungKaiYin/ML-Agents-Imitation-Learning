@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
     //bool focus = false;
     int amountOfEnemyDefeat = 0;
 
-    TurnManager tm;
+    public TurnManager tm;
+    public ButtonManager bm;
 
     GameObject findChildFromParent(string parentName, string childNameToFind)
     {
@@ -102,12 +103,65 @@ public class GameManager : MonoBehaviour
         {
             ob.SetActive(false);
         }
-        GetEnemy();
+        //GetEnemy();
+        e_marker = new List<GameObject>();
+        e_clickBox = new List<GameObject>();
+        e_hpSlider = new List<GameObject>();
+        e_touSlider = new List<GameObject>();
+        esList = new List<Status>();
+        e_hp = new List<float>();
+        e_tou = new List<float>();
+        int lc = 0;
+        //marker.Clear();
+        for(int i=1;i<5;i++)
+        {
+            if (GameObject.FindGameObjectWithTag("Enemy" + i))
+            {
+                enemy.Add(GameObject.FindGameObjectWithTag("Enemy" + i));
+            }
+        }
+        
+        for (int i = 0; i < enemy.Count; i++)
+        {
+            e_index[i] = i;
+            e_marker.Add(enemy[lc].transform.Find("Marker").gameObject);
+            e_clickBox.Add(enemy[lc].transform.Find("ClickBox").gameObject);
+            e_hpSlider.Add(enemy[lc].transform.Find("Health").gameObject);
+            e_touSlider.Add(enemy[lc].transform.Find("Toughness").gameObject);
+            eAttackCollider.Add(enemy[lc].transform.Find("AttackCollider").gameObject);
+            eAttackCollider[lc].SetActive(false);
+            eMissCollider.Add(enemy[lc].transform.Find("MissCollider").gameObject);
+            eMissCollider[lc].SetActive(false);
+            eGetHitCollider.Add(enemy[lc].transform.Find("GetHitCollider").gameObject);
+            eGetHitCollider[lc].SetActive(false);
+            //e_hp.Add(PlayerPrefs.GetFloat("e1"));
+            switch (lc)
+            {
+                case 0:
+                    e_clickBox[lc].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(Enemy1GetClick);
+                    break;
+                case 1:
+                    e_clickBox[lc].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(Enemy2GetClick);
+                    break;
+                case 2:
+                    e_clickBox[lc].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(Enemy3GetClick);
+                    break;
+                case 3:
+                    e_clickBox[lc].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(Enemy4GetClick);
+                    break;
+            }
+
+            esList.Add(enemy[lc].GetComponent<Status>());
+            e_hp.Add(esList[lc].GetHp());
+            e_tou.Add(esList[lc].GetTou());
+            //enemy[lc].GetComponent<Collider2D>().enabled = false;
+            lc++;
+        }
         PositionUpdate();
+        tm.TurnManagerStrat();
         //PullEnemy(3);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -779,6 +833,7 @@ public class GameManager : MonoBehaviour
 
     void PositionUpdate()
     {
+        Debug.Log(enemy.Count + "testtt " + esList.Count);
         for (int i = 0; i < enemy.Count; i++)
         {
             if (esList[e_index[i]].IsItGrounded())
@@ -893,10 +948,22 @@ public class GameManager : MonoBehaviour
         AimTheTarget(area);
     }
 
-    public void AgentActionMark(float dmg, float t_dmg, int target)
+    public void AgentActionMark(float dmg, float t_dmg, int target,String mode)
     {
         this.dmg = Mathf.RoundToInt(dmg);
         this.t_dmg = Mathf.RoundToInt(t_dmg);
+        if (mode == "Upper")
+        {
+            jumpTf = false;
+        }
+        if (mode == "Lower")
+        {
+            jumpTf = true;
+        }
+        if (mode == "Middle"&&!psmList[0].IsItGrounded())
+        {
+            jumpTf = true;
+        }
         AgentAction(target);
     }
 
@@ -931,10 +998,15 @@ public class GameManager : MonoBehaviour
         eAction(code);
     }
 
+    bool fTime = true;
     public void GameReset()
     {
         //p_hpSlider.Add(findChildFromParent(player[pi].name, "Health"));
         //p_touSlider.Add(findChildFromParent(player[pi].name, "Toughness"));
+        if (PlayerPrefs.GetInt("Cheese") == 1)
+            bm.p_MagicButtonActivate(true);
+        else
+            bm.p_MagicButtonActivate(false);
         foreach (Status ob in psmList)
         {
             ob.StatusRest();
@@ -1001,7 +1073,10 @@ public class GameManager : MonoBehaviour
         {
             ob.SetActive(false);
         }
-        PositionUpdate();
+        if(!fTime)
+            PositionUpdate();
+        tm.TurnManagerStrat();
+        fTime = false;
     }
 
     public int PlayerAmount()

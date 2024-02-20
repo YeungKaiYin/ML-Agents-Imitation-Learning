@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
@@ -10,10 +11,19 @@ public class TurnBasedAgent : Agent
     public TurnManager tm;
     public LittleNightmare ln;
     int pAmount, eAmount;
+    MouseAgent ma;
+    bool cheeseGet = false;
 
     public override void OnEpisodeBegin()
     {
         // Reset the game state at the beginning of each episode
+        if (PlayerPrefs.GetInt("Cheese") == 1)
+            cheeseGet = true;
+        else
+            cheeseGet = false;
+
+        if (GameObject.FindGameObjectWithTag("Mouse"))
+            ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
         Debug.Log("OnEpisodeBegin");
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -23,8 +33,6 @@ public class TurnBasedAgent : Agent
 
         pAmount = gm.PlayerAmount();
         eAmount = gm.EnemyAmount();
-
-        
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -77,26 +85,26 @@ public class TurnBasedAgent : Agent
                 case 0:
                     // Attack
                     // Implement attack logic here
-                    ln.AgentBladeAttack(0);
+                    ln.AgentBladeAttack("Middle",0);
                     break;
                 case 1:
-                    ln.AgentBladeAttack(1);
+                    ln.AgentBladeAttack("Lower", 0);
                     break;
                 case 2:
-                    ln.AgentFistAttack(0);
+                    ln.AgentBladeAttack("Upper", 0);
                     break;
                 case 3:
-                    ln.AgentMagicAttack(0);
+                    ln.AgentFistAttack("Middle", 0);
                     break;
                 case 4:
-                    ln.AgentMagicAttack(1);
+                    ln.AgentFistAttack("Lower", 0);
                     break;
                 case 5:
-                    ln.AgentMagicAttack(2);
+                    ln.AgentFistAttack("Upper", 0);
                     break;
-                case 6:
-                    ln.AgentMagicAttack(3);
-                    break;
+                //case 6:
+                //    ln.AgentMagicAttack(3);
+                //    break;
             }
 
             ln.AgentTurnEnd();
@@ -207,7 +215,13 @@ public class TurnBasedAgent : Agent
         float reward2 = CalculateReward();
         AddReward(reward2);
         EndEpisode();
+        ma.AgentDefeat();
         Debug.Log("EndEpisode");
+    }
+
+    public void UnLoadScene()
+    {
+        SceneManager.UnloadSceneAsync("Fight AgentTest");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

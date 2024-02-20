@@ -8,7 +8,7 @@ using TMPro;
 public class Status : MonoBehaviour
 {
     GameManager gm;
-    ButtonManager bm;
+    public ButtonManager bm;
     //力量,敏捷,智力,體質,外貌,意志,體型,教育,機動力
     //str, dex, int, con, app, pow, siz, edu, mov
     public int s_str, s_dex, s_int, s_con, s_app, s_pow, s_siz, s_edu, s_mov;
@@ -22,6 +22,7 @@ public class Status : MonoBehaviour
     bool breaked = false;
     bool dying = false;
     bool grounded = true;
+    bool propsGet = false;
     LittleNightmare nm;
     Enemy01 e01;
     Slider tou_slider;
@@ -90,6 +91,16 @@ public class Status : MonoBehaviour
     {
         focusStack+=stack;
         tmpText.text = focusStack.ToString();
+    }
+
+    public bool PropsGet()
+    {
+        return propsGet;
+    }
+
+    public void PropsGet(bool tf)
+    {
+        propsGet = tf;
     }
 
     public bool IsItBreaked()

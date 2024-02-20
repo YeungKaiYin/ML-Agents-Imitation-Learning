@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ButtonManager
+  - ButtonManagerCM
+  - Mouse
+  - GetHitCollider
+  - Mark
+  - Enemy4
+  - Enemy3
+  - MissCollider
+  - PlayerCollider
+  - Enemy2
+  - GameManager
+  - Enemy1
+  - TurnManager
+  - ModeSwitch
+  - MagicButton
   layers:
   - Default
   - TransparentFX
