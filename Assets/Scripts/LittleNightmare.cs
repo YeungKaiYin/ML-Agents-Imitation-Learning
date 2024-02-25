@@ -105,7 +105,7 @@ public class LittleNightmare : MonoBehaviour
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Debug.Log("dmg:" + dmg);
-            gm.ActionMark(dmg, t_dmg, 2, true, true);
+            gm.ActionMark(dmg, t_dmg, 2, true, true,mode);
         }
         else if(mode == "Middle")
         try
@@ -115,7 +115,7 @@ public class LittleNightmare : MonoBehaviour
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2);
             //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Debug.Log("dmg:" + dmg);
-            gm.ActionMark(dmg,t_dmg,2);
+            gm.ActionMark(dmg,t_dmg,2,mode);
         }
         catch (Exception e) { Debug.Log(e); }
         else if (mode == "Upper")
@@ -126,7 +126,7 @@ public class LittleNightmare : MonoBehaviour
                 t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
                 //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
                 Debug.Log("dmg:" + dmg);
-                gm.ActionMark(dmg, t_dmg, 2);
+                gm.ActionMark(dmg, t_dmg, 2,mode);
             }
             catch (Exception e) { Debug.Log(e); }
 
@@ -201,21 +201,21 @@ public class LittleNightmare : MonoBehaviour
             {
                 
                 if(sm.FocusStack()>0)
-                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, true);
+                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, true,mode);
                 else
-                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, false);
+                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, false,mode);
             }
             else if (mode == "Lower" && !sm.IsItGrounded())
             {
-                gm.ActionMark(dmg, t_dmg, 1, false, true);
+                gm.ActionMark(dmg, t_dmg, 1, false, true,mode);
             }
             else if (!sm.IsItGrounded())
             {
-                gm.ActionMark(dmg, t_dmg, 1, false, false);
+                gm.ActionMark(dmg, t_dmg, 1, false, false,mode);
             }
             else
             {
-                gm.ActionMark(dmg, t_dmg, 1);
+                gm.ActionMark(dmg, t_dmg, 1,mode);
             }
             
         }
@@ -258,7 +258,7 @@ public class LittleNightmare : MonoBehaviour
         // 
         Status sm = gameObject.GetComponent<Status>();
         dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-        t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+        t_dmg = 999+sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
         try
         {
             GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -284,7 +284,7 @@ public class LittleNightmare : MonoBehaviour
             Debug.Log("Agent Magic Attack");
             Status sm = gameObject.GetComponent<Status>();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            t_dmg = 999+sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             gm.AgentActionMark(dmg, t_dmg, target, "Middle");
         }
         catch (Exception e) { Debug.Log(e); }

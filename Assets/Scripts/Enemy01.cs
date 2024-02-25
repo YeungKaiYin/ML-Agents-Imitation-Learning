@@ -12,6 +12,9 @@ public class Enemy01 : MonoBehaviour
     EnemyStatus es;
     float dmg, heal;
     int t_dmg;
+    int orderCount = 0;
+    List<int> orderList = new List<int>();
+    Status sm;
     //力量,敏捷,智力,體質,外貌,意志,體型,教育,機動力
     //s_ = player status
     //[SerializeField]
@@ -27,21 +30,22 @@ public class Enemy01 : MonoBehaviour
 
     private void Awake()
     {
+        sm = gameObject.GetComponent<Status>();
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         gameObject.name = "Enemy01";
         ChangeStatue();
+        orderList.Add(0);
+        orderList.Add(0);
+        orderList.Add(1);
+        orderList.Add(2);
     }
 
     public void Action()
     {
         Debug.Log("e01 action "+gameObject.tag);
         //using methop to do st
-        RandomAction();
-    }
 
-    void Start()
-    {
-
+        OrderAction(orderList[orderCount]);
     }
 
     public void ChangeStatue()
@@ -64,6 +68,28 @@ public class Enemy01 : MonoBehaviour
         NormalAttack();
     }
 
+    public void OrderAction(int order)
+    {
+        switch (order)
+        {
+            case 0:
+                NormalAttack();
+                break;
+            case 1:
+                HeavyAttack();
+                break;
+            case 2:
+                GunAttack();
+                break;
+        }
+
+
+        if (orderList.Count > orderCount + 1)
+            orderCount++;
+        else
+            orderCount = 0;
+    }
+
     public void ToGM_Action()
     {
         if (gameObject.tag == "Enemy1")
@@ -76,11 +102,22 @@ public class Enemy01 : MonoBehaviour
             gm.eActionMark(3, dmg);
     }
 
+    public void ToGM_Landing()
+    {
+        if (gameObject.tag == "Enemy1")
+            gm.eLandingMark(0);
+        else if (gameObject.tag == "Enemy2")
+            gm.eLandingMark(1);
+        else if (gameObject.tag == "Enemy3")
+            gm.eLandingMark(2);
+        else if (gameObject.tag == "Enemy4")
+            gm.eLandingMark(3);
+    }
+
     public void NormalAttack()
     {
         try
         {
-            Status sm = gameObject.GetComponent<Status>();
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             try
             {
@@ -97,7 +134,7 @@ public class Enemy01 : MonoBehaviour
 
     public void HeavyAttack()
     {
-        dmg = PlayerPrefs.GetInt("str") + (float)((double)PlayerPrefs.GetInt("con") * 0.5);
+        dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
         try
         {
             GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -111,8 +148,8 @@ public class Enemy01 : MonoBehaviour
     {
         try
         {
-            Status sm = gameObject.GetComponent<Status>();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            sm.MustHit(true);
+            dmg = sm.GetEdu() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetDex() * 0.2);
             try
             {
                 GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -122,8 +159,11 @@ public class Enemy01 : MonoBehaviour
             catch (Exception e) { Debug.Log("nattack false in\n" + e); }
         }
         catch (Exception e) { Debug.Log("nattack false "+e); }
+    }
 
-
+    public void Landing()
+    {
+        ToGM_Landing();
     }
 
     //getter method

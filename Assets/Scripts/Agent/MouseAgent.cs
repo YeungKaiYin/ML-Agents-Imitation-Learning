@@ -15,6 +15,7 @@ public class MouseAgent : Agent
     private bool isButtonPushed;
     private bool interact;
     private int actionsReceived;
+    bool chess = false;
 
     TurnBasedAgent tba;
 
@@ -100,8 +101,16 @@ public class MouseAgent : Agent
         }
         else if (collision.TryGetComponent(out Enemy enemy))
         {
-            SceneManager.LoadScene("Fight AgentTest", LoadSceneMode.Additive);
-            tba = GameObject.FindGameObjectWithTag("Player").GetComponent<TurnBasedAgent>();
+            if (isButtonPushed)
+            {
+                SceneManager.LoadScene("Fight AgentTest", LoadSceneMode.Additive);
+                tba = GameObject.FindGameObjectWithTag("Player").GetComponent<TurnBasedAgent>();
+            }
+            else
+            {
+                AddReward(-7f);
+                EndEpisode();
+            }
         }
 
     }

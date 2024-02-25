@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     bool jumpTf = false;
     //bool focus = false;
     int amountOfEnemyDefeat = 0;
+    String mode="Middle";
 
     public TurnManager tm;
     public ButtonManager bm;
@@ -545,23 +546,33 @@ public class GameManager : MonoBehaviour
     void eAction(int markerIndex)
     {
         //Debug.Log("eAction"+" "+markerIndex);
-        if (psmList[0].IsItGrounded())
+        if(!esList[markerIndex].MustHit())
         {
-            Debug.Log("eAction" + " " + markerIndex);
+            if (psmList[0].IsItGrounded())
+            {
+                Debug.Log("eAction" + " " + markerIndex);
+                player[0].GetComponent<Transform>().position = battlePosLeft.transform.position;
+                player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+            else
+            {
+                Debug.Log("eAction" + " " + markerIndex);
+                player[0].GetComponent<Transform>().position = battlePosLeftUp.transform.position;
+                player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+            //player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            if (esList[markerIndex].IsItGrounded())
+                enemy[markerIndex].GetComponent<Transform>().position = battlePosRight.transform.position;
+            else
+                enemy[markerIndex].GetComponent<Transform>().position = battlePosRightUp.transform.position;
+        }
+        else
+        {
             player[0].GetComponent<Transform>().position = battlePosLeft.transform.position;
             player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-        else
-        {
-            Debug.Log("eAction" + " " + markerIndex);
-            player[0].GetComponent<Transform>().position = battlePosLeftUp.transform.position;
-            player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-        //player[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        if (esList[markerIndex].IsItGrounded())
             enemy[markerIndex].GetComponent<Transform>().position = battlePosRight.transform.position;
-        else
-            enemy[markerIndex].GetComponent<Transform>().position = battlePosRightUp.transform.position;
+        }
+        
         //do the action
         //player[0].GetComponent<Animator>().Play(animName);
 
@@ -569,6 +580,13 @@ public class GameManager : MonoBehaviour
         //
         //enemy[markerIndex].GetComponent<Collider2D>().enabled = true;
         eAttackCollider[markerIndex].SetActive(true);
+        eTurnIndex = markerIndex;
+    }
+
+    void eLanding(int markerIndex)
+    {
+        esList[markerIndex].IsItGrounded(true);
+        enemy[markerIndex].GetComponent<Transform>().position = battlePosRight.transform.position;
         eTurnIndex = markerIndex;
     }
 
@@ -589,14 +607,20 @@ public class GameManager : MonoBehaviour
         int focusStack = psmList[0].FocusStackRelease();
         t_dmg = t_dmg + focusStack * 2f;
         dmg = dmg + focusStack * 2f;
+        Debug.Log("e_tou " + e_tou[lastMark]);
+        e_tou[lastMark] = e_touSlider[lastMark].GetComponent<Slider>().value/convertTou;
+
         if (t_dmg >= 0)
             e_tou[lastMark] -= t_dmg;
-
+        Debug.Log("e_tou " + e_tou[lastMark]);
         t_dmg = 0;
         e_touSlider[lastMark].GetComponent<Slider>().value = convertTou * e_tou[lastMark];
         if (e_touSlider[lastMark].GetComponent<Slider>().value <= 0)
+        {
+            esList[lastMark].IsItBreaked(true);
             tm.Break(enemy[lastMark]);
-
+        }
+            
         //knock up and jump
         if (e_touSlider[lastMark].GetComponent<Slider>().value <= 0 && knockup)
         {
@@ -609,7 +633,7 @@ public class GameManager : MonoBehaviour
         }
 
         //knock down and fall
-        if (!knockup && !jumpTf && !psmList[0].IsItGrounded())
+        if (!knockup && !jumpTf && !psmList[0].IsItGrounded()&&mode=="Upper")
         {
             enemy[lastMark].GetComponent<Transform>().position = battlePosRight.transform.position;
             esList[lastMark].IsItGrounded(true);
@@ -657,12 +681,12 @@ public class GameManager : MonoBehaviour
             
         }
         
-        if (!esList[0].IsItGrounded())
-            esList[0].KnockUpIncrease();
+        //if (!esList[0].IsItGrounded())
+        //    esList[0].KnockUpIncrease();
 
         if (jumpTf)
             psmList[0].IsItGrounded(false);
-        else
+        else if(mode=="Upper")
             psmList[0].IsItGrounded(true);
         jumpTf = false;
 
@@ -671,7 +695,7 @@ public class GameManager : MonoBehaviour
             PullEnemy(lastMark);
             pull = false;
         }
-            
+        knockup = false;
         Invoke("GM_TurnEnd", 0.3f);
     }
 
@@ -727,32 +751,40 @@ public class GameManager : MonoBehaviour
 
     public void GM_pColliderMiss()
     {
-        if (!jumpTf && psmList[0].IsItGrounded())
+        if (mode!="Lower" && psmList[0].IsItGrounded())
         {
             pAttackCollider[0].SetActive(false);
             dmg = 0;
             t_dmg = 0;
             Invoke("GM_TurnEnd", 1f);
         }
-        else if(jumpTf && psmList[0].IsItGrounded())
+        else if(mode=="Lower" && psmList[0].IsItGrounded())
         {
             player[0].GetComponent<Transform>().position = battlePosLeftUp.transform.position;
             //psmList[0].IsItGrounded(false);
         }
 
-        if (!psmList[0].IsItGrounded() && jumpTf)
+        if (!psmList[0].IsItGrounded() && mode == "Lower")
         {
             pAttackCollider[0].SetActive(false);
             dmg = 0;
             t_dmg = 0;
             Invoke("GM_TurnEnd", 1f);
         }
-        else if(!jumpTf && !psmList[0].IsItGrounded())
+        else if(!psmList[0].IsItGrounded() && mode == "Middle")
+        {
+            pAttackCollider[0].SetActive(false);
+            dmg = 0;
+            t_dmg = 0;
+            Invoke("GM_TurnEnd", 1f);
+        }
+        else if(mode == "Upper" && !psmList[0].IsItGrounded())
         {
             player[0].GetComponent<Transform>().position = battlePosLeft.transform.position;
             //psmList[0].IsItGrounded(true);
         }
-        
+        knockup = false;
+        jumpTf = false;
     }
 
     public void GM_eColliderMiss()
@@ -789,7 +821,7 @@ public class GameManager : MonoBehaviour
 
     public void GM_eTurnEnd()
     {
-        if (!jumpTf)
+        if (psmList[0].IsItGrounded())
             player[0].GetComponent<Transform>().position = pPos.transform.position;
         else
             player[0].GetComponent<Transform>().position = pPosUp.transform.position;
@@ -823,12 +855,17 @@ public class GameManager : MonoBehaviour
                     enemy[i].GetComponent<Transform>().position = ePosBox[e_index[i]].transform.position;
                 else if(enemy[i].GetComponent<Transform>().position == battlePosRightUp.transform.position)
                     enemy[i].GetComponent<Transform>().position = battlePosRight.transform.position;
-            if (psmList[0].IsItGrounded())
-                if (player[0].GetComponent<Transform>().position == pPosUp.transform.position)
-                    player[0].GetComponent<Transform>().position = pPos.transform.position;
-                else if(player[0].GetComponent<Transform>().position == battlePosLeftUp.transform.position)
-                    player[0].GetComponent<Transform>().position = battlePosLeft.transform.position;
+            
         }
+        if (psmList[0].IsItGrounded())
+        {
+            if (player[0].GetComponent<Transform>().position == pPosUp.transform.position)
+                player[0].GetComponent<Transform>().position = pPos.transform.position;
+            else if (player[0].GetComponent<Transform>().position == battlePosLeftUp.transform.position)
+                player[0].GetComponent<Transform>().position = battlePosLeft.transform.position;
+            //Debug.Log("Landing psLGrounded");
+        }
+            
     }
 
     void PositionUpdate()
@@ -901,13 +938,14 @@ public class GameManager : MonoBehaviour
         AimSelf();
     }
 
-    public void FocusActionMark(int buffStack, float heal, float dmg, float t_dmg, int area, bool knockup, bool jump)
+    public void FocusActionMark(int buffStack, float heal, float dmg, float t_dmg, int area, bool knockup, bool jump,String mode)
     {
         this.dmg = Mathf.RoundToInt(dmg);
         this.t_dmg = Mathf.RoundToInt(t_dmg);
         this.knockup = knockup;
         jumpTf = jump;
         this.buffStack = buffStack;
+        this.mode = mode;
         AimSelf();
         AimTheTarget_Release(1);
     }
@@ -941,10 +979,11 @@ public class GameManager : MonoBehaviour
         AimTheTarget();
     }
 
-    public void ActionMark(float dmg, float t_dmg, int area)
+    public void ActionMark(float dmg, float t_dmg, int area,String mode)
     {
         this.dmg = Mathf.RoundToInt(dmg);
         this.t_dmg = Mathf.RoundToInt(t_dmg);
+        this.mode = mode;
         AimTheTarget(area);
     }
 
@@ -967,13 +1006,13 @@ public class GameManager : MonoBehaviour
         AgentAction(target);
     }
 
-    public void ActionMark(float dmg, float t_dmg, int area, bool knockup, bool jump)
+    public void ActionMark(float dmg, float t_dmg, int area, bool knockup, bool jump, String mode)
     {
         this.dmg = Mathf.RoundToInt(dmg);
         this.t_dmg = Mathf.RoundToInt(t_dmg);
         this.knockup = knockup;
         jumpTf = jump;
-        
+        this.mode = mode;
         AimTheTarget(area);
     }
 
@@ -989,7 +1028,6 @@ public class GameManager : MonoBehaviour
     {
         this.dmg = Mathf.RoundToInt(dmg);
         eAction(code);
-        //Debug.Log("eAction");
     }
 
     public void eActionMark(int code, float dmg,int area)
@@ -998,15 +1036,20 @@ public class GameManager : MonoBehaviour
         eAction(code);
     }
 
+    public void eLandingMark(int code)
+    {
+        eLanding(code);
+    }
+
     bool fTime = true;
     public void GameReset()
     {
         //p_hpSlider.Add(findChildFromParent(player[pi].name, "Health"));
         //p_touSlider.Add(findChildFromParent(player[pi].name, "Toughness"));
-        if (PlayerPrefs.GetInt("Cheese") == 1)
-            bm.p_MagicButtonActivate(true);
-        else
-            bm.p_MagicButtonActivate(false);
+        //if (PlayerPrefs.GetInt("Cheese") == 1)
+        //    bm.p_MagicButtonActivate(true);
+        //else
+        //    bm.p_MagicButtonActivate(false);
         foreach (Status ob in psmList)
         {
             ob.StatusRest();

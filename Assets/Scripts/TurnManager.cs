@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
     List<ObjectAndTime> sortedList = new List<ObjectAndTime>();
     //public List<GameObject> test = new List<GameObject>();
     List<ObjectAndTime> otList = new List<ObjectAndTime>();
+    public List<int> timeList = new List<int>();
 
     public GameObject[] box = new GameObject[8];
     public List<GameObject> sortedBox = new List<GameObject>();
@@ -27,6 +28,8 @@ public class TurnManager : MonoBehaviour
     int roundDefault = 250;
     int round;
     int roundCount = 0;
+    int hoverDefault = 500;
+    int p_hoverTime = 500;
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class TurnManager : MonoBehaviour
                     ot.TimeToTurn += ot.TimeToTurnBuffer;
                 }
                 otList.Add(ot);
+                timeList.Add(ot.TimeToTurn);
                 countSort++;
             }
         }
@@ -58,15 +62,18 @@ public class TurnManager : MonoBehaviour
 
     public void SpeedCount()
     {
+        Debug.Log("SpeedCount box amount " + boxAmount);
         SortTheList();
         if(sortedBox.Count==0)
-        for (int i = 0; i < boxAmount; i++)
         {
-            GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
+            for (int i = 0; i < boxAmount; i++)
+            {
+                GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
                 ob.transform.SetParent(this.gameObject.transform, true);
                 ob.transform.position = box[i].transform.position;
-            ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
-            sortedBox.Add(ob);
+                ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
+                sortedBox.Add(ob);
+            }
         }
         //else if(sortedBox.Count>= boxAmount -1&& sortedBox.Count< boxAmount)
         //{
@@ -82,8 +89,7 @@ public class TurnManager : MonoBehaviour
         //}
         else
         {
-            sortedBox.Clear();
-            for (int i = 0; i < boxAmount; i++)
+            for(int i= sortedBox.Count; i<boxAmount;i++)
             {
                 GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
                 ob.transform.SetParent(this.gameObject.transform);
@@ -91,12 +97,39 @@ public class TurnManager : MonoBehaviour
                 ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
                 sortedBox.Add(ob);
             }
+            
+            //sortedBox.Clear();
+            //for (int i = 0; i < boxAmount; i++)
+            //{
+            //    GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
+            //    ob.transform.SetParent(this.gameObject.transform);
+            //    ob.transform.position = box[i].transform.position;
+            //    ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
+            //    sortedBox.Add(ob);
+            //}
         }
 
         if (fTurn)
         {
             TurnStart();
             fTurn = false;
+        }
+    }
+
+    public void SpeedReCount()
+    {
+        foreach (GameObject ob in sortedBox)
+        {
+            Destroy(ob);
+        }
+        sortedBox.Clear();
+        for (int i = 0; i < boxAmount; i++)
+        {
+            GameObject ob = Instantiate(sortedList[i].go.transform.Find("Box").gameObject);
+            ob.transform.SetParent(this.gameObject.transform);
+            ob.transform.position = box[i].transform.position;
+            ob.GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
+            sortedBox.Add(ob);
         }
     }
 
@@ -115,6 +148,16 @@ public class TurnManager : MonoBehaviour
         try
         {
             int ft = sortedList[0].TimeToTurn;
+            Debug.Log("ft Time: " + ft);
+            for (int i = 0; participant.Count > i; i++)
+            {
+                if (participant[i].GetComponent<Status>().KnockUpCount() > 0)
+                {
+                    participant[i].GetComponent<Status>().KnockUpDecrease(ft);
+                }
+            }
+            gm.landing();
+
             foreach (ObjectAndTime o in sortedList)
             {
                 o.TimeToTurn -= ft;
@@ -136,18 +179,12 @@ public class TurnManager : MonoBehaviour
             //}
             sortedList[0].go.GetComponent<Status>().TurnStart();
             Debug.Log(sortedList[0].go.tag+" Action TurnManager");
-            if(goBuffer!=sortedList[0].go)
-            {
-                sortedList[0].go.GetComponent<Status>().KnockUpClear();
-                Debug.Log("KnockUpClear");
-            }
+            //if(goBuffer!=sortedList[0].go)
+            //{
+            //    sortedList[0].go.GetComponent<Status>().KnockUpClear();
+            //    Debug.Log("KnockUpClear");
+            //}
 
-            for (int i = 0; participant.Count > i; i++)
-            {
-                if (participant[i].GetComponent<Status>().KnockUpCount() >= 0)
-                    participant[i].GetComponent<Status>().KnockUpDecrease();
-            }
-            gm.landing();
             //Debug.Log(sortedList[0].go.tag + " Turn Start");
             //TurnEnd();
         }
@@ -175,11 +212,16 @@ public class TurnManager : MonoBehaviour
             {
                 if (otfe.go.tag == goBuffer.tag)
                     otfe.TimeToTurn += otfe.TimeToTurnBuffer;
-           }
+            }
+            SortTheList();
             removeBuffer = sortedList[0];
-            GameObject.Destroy(sortedBox[0]);
+            Destroy(sortedBox[0]);
             sortedBox.RemoveAt(0);
-            SpeedCount();
+            for(int i=0;i<sortedBox.Count;i++)
+            {
+                sortedBox[i].transform.position = box[i].transform.position;
+            }
+            SpeedReCount();
             TurnStart();
         }
         catch (Exception e) { Debug.Log(e); }
@@ -188,16 +230,18 @@ public class TurnManager : MonoBehaviour
 
     public void Break(GameObject go)
     {
-        if(go.GetComponent<Status>().IsItBreaked()==false)
+        if(go.GetComponent<Status>().IsItBreaked()==true&&!go.GetComponent<Status>().IsItBreakProtect())
         {
             foreach (ObjectAndTime ot in sortedList)
             {
                 if (ot.go.tag == go.tag)
                     ot.TimeToTurn += ot.TimeToTurnBuffer;
             }
-            go.GetComponent<Status>().IsItBreaked(true);
+            go.GetComponent<Status>().IsItBreakProtect(true);
+            go.GetComponent<Status>().IsItBreaked(false);
         }
-        SpeedCount();
+        SortTheList();
+        SpeedReCount();
     }
 
     public void Dying(GameObject go)
@@ -208,7 +252,7 @@ public class TurnManager : MonoBehaviour
             
             go.GetComponent<Status>().IsItDying(true);
         }
-        SpeedCount();
+        SpeedReCount();
     }
 
     public void TurnManagerStrat()
@@ -225,6 +269,10 @@ public class TurnManager : MonoBehaviour
         otList = new List<ObjectAndTime>();
 
         box = new GameObject[8];
+        foreach(GameObject ob in sortedBox)
+        {
+            Destroy(ob);
+        }
         sortedBox = new List<GameObject>();
         boxAmount = 4;
         knockUpCount = new List<int>();

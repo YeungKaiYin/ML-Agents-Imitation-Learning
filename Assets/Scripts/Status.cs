@@ -19,7 +19,10 @@ public class Status : MonoBehaviour
     string enemy_code;
     //bool myTurn = false;
     int focusStack = 0;
+    bool mustHit = false;
+
     bool breaked = false;
+    bool breakProtect = false;
     bool dying = false;
     bool grounded = true;
     bool propsGet = false;
@@ -52,6 +55,7 @@ public class Status : MonoBehaviour
     {
         focusStack = 0;
         IsItBreaked(false);
+        IsItBreakProtect(false);
         KnockUpClear();
         IsItDying(false);
         IsItGrounded(true);
@@ -93,6 +97,16 @@ public class Status : MonoBehaviour
         tmpText.text = focusStack.ToString();
     }
 
+    public bool MustHit()
+    {
+        return mustHit;
+    }
+
+    public void MustHit(bool tf)
+    {
+        mustHit = tf;
+    }
+
     public bool PropsGet()
     {
         return propsGet;
@@ -113,6 +127,16 @@ public class Status : MonoBehaviour
         breaked = tf;
     }
 
+    public bool IsItBreakProtect()
+    {
+        return breakProtect;
+    }
+
+    public void IsItBreakProtect(bool tf)
+    {
+        breakProtect = tf;
+    }
+
     public bool IsItGrounded()
     {
         return grounded;
@@ -121,7 +145,11 @@ public class Status : MonoBehaviour
     public void IsItGrounded(bool tf)
     {
         grounded = tf;
-        knockUpCount = 1;
+        if (tf == false)
+            knockUpCount = 500;
+        else
+            knockUpCount = 0;
+        //Debug.Log("knockup isitground " + tf);
     }
 
     int knockUpCount;
@@ -130,25 +158,27 @@ public class Status : MonoBehaviour
         return knockUpCount;
     }
 
-    public void KnockUpIncrease()
-    {
-        if (IsItGrounded())
-            knockUpCount++;
-    }
+    //public void KnockUpIncrease()
+    //{
+    //    if (IsItGrounded())
+    //        knockUpCount++;
+    //}
 
-
-    public void KnockUpDecrease()
+    public void KnockUpDecrease(int time)
     {
+        //Debug.Log("KnockUp Decrease " + knockUpCount + " " + time);
         if (knockUpCount > 0)
-            knockUpCount--;
-        else if (knockUpCount <= 0)
+            knockUpCount-=time;
+        if (knockUpCount <= 0)
             IsItGrounded(true);
+        
     }
 
     public void KnockUpClear()
     {
         knockUpCount=0;
         IsItGrounded(true);
+        //Debug.Log("KnockUp Clear");
     }
 
 
@@ -167,8 +197,9 @@ public class Status : MonoBehaviour
         //myTurn = true;
         if(IsItBreaked())
         {
-            tou_slider.value = tou_slider.maxValue;
+            tou_slider.value = 1;
             IsItBreaked(false);
+            IsItBreakProtect(false);
         }
         CharaterAction();
     }
