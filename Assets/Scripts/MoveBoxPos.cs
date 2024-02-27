@@ -1,24 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-public class Test : MonoBehaviour
+public class MoveBoxPos : MonoBehaviour
 {
-    public GameManager gm;
-    public GameObject go,startPosition,endPosition;
-    float moveSpeed=3;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject startPosition, endPosition;
+    float moveSpeed = 3;
 
     IEnumerator MovePos(GameObject endPosition)
     {
@@ -30,18 +17,13 @@ public class Test : MonoBehaviour
             float distCovered = (Time.time - startTime) * moveSpeed;
             float fracJourney = distCovered / journeyLength;
             gameObject.transform.position = Vector3.Lerp(startPosition.transform.position, endPosition.transform.position, fracJourney);
+            gameObject.GetComponent<RectTransform>().localScale = Vector3.Lerp(gameObject.GetComponent<RectTransform>().localScale, endPosition.GetComponent<RectTransform>().localScale, fracJourney);
             yield return null;
         }
     }
-    public void StartMovingPos()
+    public void StartMovingPos(GameObject go)
     {
-        StartCoroutine(MovePos(endPosition));
-    }
-
-        GameObject findChildFromParent(string parentName, string childNameToFind)
-    {
-        string childLocation = parentName + "/" + childNameToFind;
-        GameObject childObject = GameObject.Find(childLocation);
-        return childObject;
+        startPosition = gameObject;
+        StartCoroutine(MovePos(go));
     }
 }

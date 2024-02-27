@@ -607,12 +607,10 @@ public class GameManager : MonoBehaviour
         int focusStack = psmList[0].FocusStackRelease();
         t_dmg = t_dmg + focusStack * 2f;
         dmg = dmg + focusStack * 2f;
-        Debug.Log("e_tou " + e_tou[lastMark]);
         e_tou[lastMark] = e_touSlider[lastMark].GetComponent<Slider>().value/convertTou;
 
         if (t_dmg >= 0)
             e_tou[lastMark] -= t_dmg;
-        Debug.Log("e_tou " + e_tou[lastMark]);
         t_dmg = 0;
         e_touSlider[lastMark].GetComponent<Slider>().value = convertTou * e_tou[lastMark];
         if (e_touSlider[lastMark].GetComponent<Slider>().value <= 0)

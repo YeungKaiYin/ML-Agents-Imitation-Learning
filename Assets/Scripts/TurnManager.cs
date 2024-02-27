@@ -219,9 +219,11 @@ public class TurnManager : MonoBehaviour
             sortedBox.RemoveAt(0);
             for(int i=0;i<sortedBox.Count;i++)
             {
-                sortedBox[i].transform.position = box[i].transform.position;
+                //sortedBox[i].transform.position = box[i].transform.position;
+                sortedBox[i].GetComponent<MoveBoxPos>().StartMovingPos(box[i]);
+                //sortedBox[i].GetComponent<RectTransform>().localScale = box[i].GetComponent<RectTransform>().localScale;
             }
-            SpeedReCount();
+            SpeedCount();
             TurnStart();
         }
         catch (Exception e) { Debug.Log(e); }
