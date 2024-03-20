@@ -416,7 +416,7 @@ public class GameManager : MonoBehaviour
         {
             if (anim.Contains("Mouse"))
             {
-                psmList[0].SetAnimator_Trigger(anim);
+                psmList[0].SetAnimator_Trigger("Action");
                 psmList[0].SetAnimator_Bool(anim, true);
             }
             else

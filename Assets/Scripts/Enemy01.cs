@@ -9,7 +9,6 @@ public class Enemy01 : MonoBehaviour
     GameObject marker;
     int hp, tou, mov;
     GameManager gm;
-    EnemyStatus es;
     float dmg, heal;
     int t_dmg;
     int orderCount = 0;
