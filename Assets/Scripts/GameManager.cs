@@ -611,8 +611,11 @@ public class GameManager : MonoBehaviour
     void P_HitSuccess()
     {
         if (esList[lastMark].GetAnimator())
+        {
             esList[lastMark].SetAnimator_Trigger("Cat_GetHit");
-
+            esList[lastMark].SetAnimator_Bool("Cat_Idle", false);
+        }
+            
         pAttackCollider[0].SetActive(false);
         //Debug.Log(pAttackCollider[0]);
         float convert = 1 / esList[lastMark].GetHp();
@@ -827,11 +830,15 @@ public class GameManager : MonoBehaviour
 
     public void GM_TurnEnd()
     {
+        if (esList[lastMark].GetAnimator())
+            esList[lastMark].SetAnimator_Bool("Cat_Idle", true);
+
         eGetHitCollider[lastMark].SetActive(false);
         eMissCollider[lastMark].SetActive(false);
-        if (magicTF)
-            magicTF = false;
-        if(psmList[0].IsItGrounded())
+
+        magicTF = false;
+
+        if (psmList[0].IsItGrounded())
             player[0].GetComponent<Transform>().position = pPos.transform.position;
         else
             player[0].GetComponent<Transform>().position = pPosUp.transform.position;
@@ -851,6 +858,9 @@ public class GameManager : MonoBehaviour
 
     public void GM_eTurnEnd()
     {
+        if (esList[lastMark].GetAnimator())
+            esList[lastMark].SetAnimator_Bool("Cat_Idle", true);
+
         if (psmList[0].IsItGrounded())
             player[0].GetComponent<Transform>().position = pPos.transform.position;
         else
