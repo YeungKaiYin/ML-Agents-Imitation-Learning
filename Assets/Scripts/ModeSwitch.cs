@@ -7,20 +7,27 @@ using UnityEngine.UI;
 public class ModeSwitch : MonoBehaviour
 {
     public TextMeshProUGUI tmpText;
-    public UnityEngine.UI.Button upper,middle, lower;
+    public UnityEngine.UI.Button upper,middle, lower,stand,cheese;
     ColorBlock theColor;
     public LittleNightmare ln;
     void Start()
     {
-        tmpText.text = "Upper";
         ln = GameObject.FindGameObjectWithTag("Player").GetComponent<LittleNightmare>();
+        ButtonActive();
         //theColor = upper.colors;
-        Middle();
+        //Middle();
     }
 
     public void TextChange()
     {
         
+    }
+
+    public void ButtonActive()
+    {
+        upper.interactable = true;
+        middle.interactable = true;
+        lower.interactable = true;
     }
 
     public void Upper()
@@ -48,5 +55,21 @@ public class ModeSwitch : MonoBehaviour
         lower.interactable = false;
 
         ln.ModeSwitch("Lower");
+    }
+
+    public void Stand()
+    {
+        cheese.interactable = true;
+        stand.interactable = false;
+
+        ln.ModeSwitch("Stand");
+    }
+
+    public void Cheese()
+    {
+        stand.interactable = true;
+        cheese.interactable = false;
+
+        ln.ModeSwitch("Cheese");
     }
 }

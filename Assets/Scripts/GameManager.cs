@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     bool jumpTf = false;
     //bool focus = false;
     int amountOfEnemyDefeat = 0;
-    String mode="Middle";
+    String mode="";
     String anim="";
 
     public TurnManager tm;
@@ -414,6 +414,9 @@ public class GameManager : MonoBehaviour
             
         if(psmList[0].GetAnimator())
         {
+            if (anim.Contains("Cheese"))
+                psmList[0].CheeseUse();
+
             if (anim.Contains("Mouse"))
             {
                 psmList[0].SetAnimator_Trigger("Action");

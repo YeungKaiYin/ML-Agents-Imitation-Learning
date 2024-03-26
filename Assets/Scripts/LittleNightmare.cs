@@ -14,7 +14,7 @@ public class LittleNightmare : MonoBehaviour
     public List<GameObject> skillSetList = new List<GameObject>();
     //GameObject aCollider;
     bool airMode = false;
-    string mode = "Middle";
+    string mode = "";
     GameManager gm;
     Status sm;
     ModeSwitch ms;
@@ -86,17 +86,103 @@ public class LittleNightmare : MonoBehaviour
     {
         this.mode = mode;
         gm.AimTheTarget_False();
-        if (animator != null&& !animator.GetBool("MouseStand_Idle"))
+        //ms.ButtonActive();
+        if (animator != null)
         {
-            
-            if (mode == "Lower")
-                animator.SetTrigger("MouseStand_LowerBladeReady");
-            else if (mode == "Middle")
-                animator.SetTrigger("MouseStand_MiddleBladeReady");
-            else if (mode == "Upper")
-                animator.SetTrigger("MouseStand_UpperBladeReady");
+
+            if (mode == "Stand")
+                animator.SetTrigger("MouseStand_Appear");
+            else if (mode == "Cheese")
+                animator.SetTrigger("Cheese_Appear");
         }
+    }
+
+    public String GetMode()
+    {
+        return mode;
+    }
+
+    public void UpperAction()
+    {
+        if(mode=="Stand")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger(sm.IsItGrounded() ? "MouseStand_UpperBladeReady" : "MouseStand_AirUpperBladeReady");
+            }
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Debug.Log("dmg:" + dmg);
+            gm.ActionMark(dmg, t_dmg, 2, "Upper", sm.IsItGrounded() ? "MouseStand_UpperBladeAction" : "MouseStand_AirUpperBladeAction");
+        }
+
+        if (mode == "Cheese")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Cheese_To_Kibble");
+            }
+            dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+            gm.ActionMark(dmg, t_dmg, 1, "Upper", "Cheese_To_Kibble");
+        }
+    }
+
+    public void MiddleAction()
+    {
+        if (mode == "Stand")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("MouseStand_MiddleBladeReady");
+            }
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.3);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2);
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Debug.Log("dmg:" + dmg);
+            gm.ActionMark(dmg, t_dmg, 2, mode, "MouseStand_MiddleBladeAction");
             
+        }
+
+        if (mode == "Cheese")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Cheese_To_Ball");
+            }
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+            gm.ActionMark(dmg, t_dmg, 1, "Middle", "Cheese_To_Ball");
+        }
+    }
+
+    public void LowerAction()
+    {
+        if (mode == "Stand")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("MouseStand_LowerBladeReady");
+            }
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
+            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Debug.Log("dmg:" + dmg);
+            gm.ActionMark(dmg, t_dmg, 2, true, true, mode, "MouseStand_LowerBladeAction");
+            
+        }
+
+        if (mode == "Cheese")
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Cheese_To_CatTeaser");
+            }
+            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+            t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+            gm.ActionMark(dmg, t_dmg, 1, "Lower", "Cheese_To_CatTeaser");
+        }
     }
 
     public void BladeAttack()
@@ -250,62 +336,67 @@ public class LittleNightmare : MonoBehaviour
         // 
 
         //Status sm = gameObject.GetComponent<Status>();
-        if (animator != null)
+        if(PlayerPrefs.GetInt("CheeseGet")==1&&sm.CheeseCount()>0)
         {
-            animator.SetBool("MouseStand_Idle", false);
-            animator.SetTrigger("Cheese_Appear");
-        }
-            
-        Debug.Log(sm.IsItGrounded());
-        if (mode == "Lower")
-        {
-            //ms.Lower();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
-            animator.SetTrigger("Cheese_To_CatTeaser");
-        }
-        else if (mode == "Middle")
-        {
-            //ms.Middle();
-            dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-            t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
-            animator.SetTrigger("Cheese_To_Ball");
-        }
-        else if (mode == "Upper")
-        {
-            //ms.Upper();
-            dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
-            t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
-            animator.SetTrigger("Cheese_To_Kibble");
-        }
-
-        try
-        {
-            //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            Debug.Log("dmg:" + dmg);
-            if (mode == "Lower" & sm.IsItGrounded())
+            if (animator != null)
             {
-
-                if (sm.FocusStack() > 0)
-                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, true, mode);
-                else
-                    gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, false, mode);
-            }
-            else if (mode == "Lower" && !sm.IsItGrounded())
-            {
-                gm.ActionMark(dmg, t_dmg, 1, false, true, mode);
-            }
-            else if (!sm.IsItGrounded())
-            {
-                gm.ActionMark(dmg, t_dmg, 1, false, false, mode);
-            }
-            else
-            {
-                gm.ActionMark(dmg, t_dmg, 1, mode);
+                animator.SetBool("MouseStand_Idle", false);
+                animator.SetTrigger("Cheese_Appear");
             }
 
+            Debug.Log(sm.IsItGrounded());
+            if (mode == "Lower")
+            {
+                //ms.Lower();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+                animator.SetTrigger("Cheese_To_CatTeaser");
+            }
+            else if (mode == "Middle")
+            {
+                //ms.Middle();
+                dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
+                t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+                animator.SetTrigger("Cheese_To_Ball");
+            }
+            else if (mode == "Upper")
+            {
+                //ms.Upper();
+                dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+                t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.5);
+                animator.SetTrigger("Cheese_To_Kibble");
+            }
+
+            try
+            {
+                //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+                Debug.Log("dmg:" + dmg);
+                if (mode == "Lower")
+                    if (mode == "Lower" & sm.IsItGrounded())
+                    {
+
+                        if (sm.FocusStack() > 0)
+                            gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, true, mode);
+                        else
+                            gm.FocusActionMark(1, 1, dmg, t_dmg, 1, true, false, mode);
+                    }
+                    else if (mode == "Lower" && !sm.IsItGrounded())
+                    {
+                        gm.ActionMark(dmg, t_dmg, 1, false, true, mode);
+                    }
+                    else if (!sm.IsItGrounded())
+                    {
+                        gm.ActionMark(dmg, t_dmg, 1, false, false, mode);
+                    }
+                    else
+                    {
+                        gm.ActionMark(dmg, t_dmg, 1, mode);
+                    }
+
+            }
+            catch (Exception e) { Debug.Log(e); }
         }
-        catch (Exception e) { Debug.Log(e); }
+        
     }
 
     public void AgentFistAttack(String mode,int target)

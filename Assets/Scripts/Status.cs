@@ -30,8 +30,10 @@ public class Status : MonoBehaviour
     LittleNightmare nm;
     Enemy01 e01;
     Slider tou_slider;
+    int cheeseCount = 0;
 
     public TextMeshProUGUI tmpText;
+    public Animator cheeseAnimator;
 
     private void Awake()
     {
@@ -45,6 +47,9 @@ public class Status : MonoBehaviour
         tou_slider =gameObject.transform.Find("Toughness").gameObject.GetComponent<Slider>();
         if (gameObject.tag == "Player")
             bm = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonManager>();
+        StatusRest();
+        //delect it later
+        PlayerPrefs.SetInt("CheeseGet", 1);
     }
 
     public void Start()
@@ -60,6 +65,8 @@ public class Status : MonoBehaviour
         KnockUpClear();
         IsItDying(false);
         IsItGrounded(true);
+        if (gameObject.tag == "Player")
+            CheeseGet();
     }
 
     public void CharaterAction()
@@ -72,6 +79,28 @@ public class Status : MonoBehaviour
             gameObject.GetComponent<Enemy01>().Action();
         if (gameObject.tag == "Player")
             bm.p_ButtonActivate();
+    }
+
+    private void CheeseGet()
+    {
+        if(PlayerPrefs.GetInt("CheeseGet")==1)
+            cheeseCount = 3;
+    }
+
+    public int CheeseCount()
+    {
+        return cheeseCount;
+    }
+
+    public void CheeseUse()
+    {
+        if(cheeseCount>0)
+        {
+            if(cheeseAnimator!=null)
+                cheeseAnimator.SetTrigger("consume");
+            Debug.Log("CheeseCount :"+cheeseCount);
+            cheeseCount -= 1;
+        }
     }
 
     public Animator GetAnimator()
