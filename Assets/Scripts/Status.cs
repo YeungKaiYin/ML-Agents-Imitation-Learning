@@ -34,6 +34,7 @@ public class Status : MonoBehaviour
 
     public TextMeshProUGUI tmpText;
     public Animator cheeseAnimator;
+    public GameObject effect_Spiral;
 
     private void Awake()
     {
@@ -174,6 +175,16 @@ public class Status : MonoBehaviour
     public void IsItBreaked(bool tf)
     {
         breaked = tf;
+        if (tf&&IsItBreakProtect()==false)
+        {
+            IsItBreakProtect(true);
+            effect_Spiral.SetActive(true);
+        }
+        else if(!tf)
+        {
+            IsItBreakProtect(false);
+            effect_Spiral.SetActive(false);
+        }   
     }
 
     public bool IsItBreakProtect()

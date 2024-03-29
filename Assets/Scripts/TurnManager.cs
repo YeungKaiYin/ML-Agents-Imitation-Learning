@@ -248,11 +248,11 @@ public class TurnManager : MonoBehaviour
 
     public void Dying(GameObject go)
     {
-        if (go.GetComponent<Status>().IsItDying() == false)
+        if (go.GetComponent<Status>().IsItDying() == true)
         {
             sortedList.RemoveAll(oat => oat.go.tag == go.tag);
             
-            go.GetComponent<Status>().IsItDying(true);
+            //go.GetComponent<Status>().IsItDying(true);
         }
         SpeedReCount();
     }
@@ -337,7 +337,8 @@ public class TurnManager : MonoBehaviour
         }
         for (int i = 0; i < lc; i++)
             knockUpCount.Add(0);
-        SpeedGen();
+        
+        SpeedGen(); 
     }
 
     GameObject findChildFromParent(string parentName, string childNameToFind)

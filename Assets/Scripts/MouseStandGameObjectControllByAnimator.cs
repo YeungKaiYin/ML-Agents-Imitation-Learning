@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseStandGameObjectControllByAnimator : MonoBehaviour
 {
-    public GameObject cheese;
+    public GameObject cheese,effect;
     public List<GameObject> ms;
 
     public void DisableMouseStand()
@@ -27,5 +27,15 @@ public class MouseStandGameObjectControllByAnimator : MonoBehaviour
     public void AbleCheese()
     {
         cheese.SetActive(true);
+    }
+
+    public void DisableEffect()
+    {
+        effect.SetActive(false);
+    }
+
+    public void AbleEffect()
+    {
+        effect.SetActive(true);
     }
 }

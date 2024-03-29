@@ -689,12 +689,13 @@ public class GameManager : MonoBehaviour
             esList[lastMark].IsItDying(true);
             tm.Dying(enemy[lastMark]);
             if(amountOfEnemyDefeat>=enemy.Count)
-            try
-            {
-                TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
-                tba.AgentVictory();
-            }
-            catch (Exception e) { Debug.Log(e); }
+                try
+                {
+                    GameReset();
+                    TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+                    tba.AgentVictory();
+                }
+                catch (Exception e) { Debug.Log(e); }
             try 
             {
                 e_hpSlider[lastMark].SetActive(false);
@@ -777,6 +778,7 @@ public class GameManager : MonoBehaviour
             tm.Dying(player[0]);
             try
             {
+                GameReset();
                 TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                 tba.AgentDefeat();
             }

@@ -93,7 +93,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: CheeseBar
+  - name: Effect_Spiral
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -101,10 +101,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1151
-      width: 707
-      height: 159
-    spriteID: 2396c913c90c265469878a48755312d1
+      y: 1644
+      width: 330
+      height: 314
+    spriteID: 01f0602ae3413714b9f904dbbf94aa74
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,52 +113,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1151}
-    spritePosition: {x: 1044, y: 20}
-  - name: Cheese
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 379
-      y: 1485
-      width: 199
-      height: 159
-    spriteID: 6b075d741ccb22342ac5b410dc63fb01
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 379, y: 1485}
-    spritePosition: {x: 1544, y: 412}
-  - name: CheeseFill
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1318
-      width: 707
-      height: 159
-    spriteID: ef71f2334d288434ba0c997642998321
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1318}
-    spritePosition: {x: 1044, y: 245}
+    uvTransform: {x: 4, y: 1644}
+    spritePosition: {x: 1104, y: 165}
   - name: Effect
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -166,8 +122,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1769
+      x: 342
+      y: 1928
       width: 481
       height: 23
     spriteID: d4719cc5f6a097a43a7edc89631af7bc
@@ -179,7 +135,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1769}
+    uvTransform: {x: 342, y: 1928}
     spritePosition: {x: 1074, y: 580}
   - name: "\u5716\u5C64 4"
     originalName: 
@@ -188,8 +144,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 852
-      y: 4
+      x: 4
+      y: 591
       width: 861
       height: 485
     spriteID: ea5832d23ab542a43b38e8dfa467be5c
@@ -201,7 +157,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 852, y: 4}
+    uvTransform: {x: 4, y: 591}
     spritePosition: {x: 71, y: 19}
   - name: "\u5716\u5C64 5"
     originalName: 
@@ -211,7 +167,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 591
+      y: 1084
       width: 736
       height: 552
     spriteID: 730a7932472bc904d871b04d6cc98f30
@@ -223,7 +179,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 591}
+    uvTransform: {x: 4, y: 1084}
     spritePosition: {x: 266, y: 479}
   - name: "\u5716\u5C64 1"
     originalName: 
@@ -254,8 +210,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1485
+      x: 342
+      y: 1644
       width: 367
       height: 276
     spriteID: 5cc6f191547eb404186865c55ea9227b
@@ -267,7 +223,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1485}
+    uvTransform: {x: 342, y: 1644}
     spritePosition: {x: 1314, y: 678}
   characterData:
     bones: []
@@ -299,6 +255,16 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: Effect_Spiral
+    spriteName: Effect_Spiral
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 01f0602ae3413714b9f904dbbf94aa74
+    layerID: 57
+    mosaicPosition: {x: 4, y: 1644}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: CheeseBar
     spriteName: CheeseBar
     isGroup: 0
@@ -307,8 +273,8 @@ ScriptedImporter:
     layerID: 48
     mosaicPosition: {x: 4, y: 1151}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: Cheese
     spriteName: Cheese
     isGroup: 0
@@ -317,8 +283,8 @@ ScriptedImporter:
     layerID: 52
     mosaicPosition: {x: 379, y: 1485}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: CheeseFill
     spriteName: CheeseFill
     isGroup: 0
@@ -327,8 +293,8 @@ ScriptedImporter:
     layerID: 50
     mosaicPosition: {x: 4, y: 1318}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   - name: Effect1
     spriteName: Effect1
     isGroup: 0
@@ -355,7 +321,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: d4719cc5f6a097a43a7edc89631af7bc
     layerID: 34
-    mosaicPosition: {x: 4, y: 1769}
+    mosaicPosition: {x: 342, y: 1928}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -375,7 +341,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: ea5832d23ab542a43b38e8dfa467be5c
     layerID: 13
-    mosaicPosition: {x: 852, y: 4}
+    mosaicPosition: {x: 4, y: 591}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -385,7 +351,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 730a7932472bc904d871b04d6cc98f30
     layerID: 14
-    mosaicPosition: {x: 4, y: 591}
+    mosaicPosition: {x: 4, y: 1084}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -405,7 +371,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 5cc6f191547eb404186865c55ea9227b
     layerID: 2
-    mosaicPosition: {x: 4, y: 1485}
+    mosaicPosition: {x: 342, y: 1644}
     flatten: 0
     isImported: 1
     isVisible: 1
