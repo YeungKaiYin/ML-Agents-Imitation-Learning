@@ -141,7 +141,7 @@ public class LittleNightmare : MonoBehaviour
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2);
             //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Debug.Log("dmg:" + dmg);
-            gm.ActionMark(dmg, t_dmg, 2, mode, "MouseStand_MiddleBladeAction");
+            gm.ActionMark(dmg, t_dmg, 2, "Middle", "MouseStand_MiddleBladeAction");
             
         }
 
@@ -169,7 +169,7 @@ public class LittleNightmare : MonoBehaviour
             t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
             //GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Debug.Log("dmg:" + dmg);
-            gm.ActionMark(dmg, t_dmg, 2, true, true, mode, "MouseStand_LowerBladeAction");
+            gm.ActionMark(dmg, t_dmg, 2, true, true, "Lower", "MouseStand_LowerBladeAction");
             
         }
 

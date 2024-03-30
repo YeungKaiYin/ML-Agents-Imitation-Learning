@@ -423,7 +423,11 @@ public class GameManager : MonoBehaviour
                 psmList[0].SetAnimator_Bool(anim, true);
             }
             else
+            {
                 psmList[0].SetAnimator_Trigger("Action");
+                psmList[0].SetAnimator_Bool(anim, true);
+            }
+                
             Debug.Log(anim);
         }
 
@@ -789,6 +793,7 @@ public class GameManager : MonoBehaviour
 
     public void GM_pColliderMiss()
     {
+        //Debug.Log("GM_pColliderMiss");
         if (mode!="Lower" && psmList[0].IsItGrounded())
         {
             pAttackCollider[0].SetActive(false);
