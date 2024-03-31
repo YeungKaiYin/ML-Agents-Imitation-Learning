@@ -42,9 +42,11 @@ public class TurnBasedAgent : Agent
 
         for (int i = 0; i < pAmount; i++)
         {
+            int c;
             float h, t;
             bool g, b, d;
-            (h, t, g, b, d) = gm.PlayerState(i);
+            (c, h, t, g, b, d) = gm.PlayerState(i);
+            sensor.AddObservation(c);
             sensor.AddObservation(h);
             sensor.AddObservation(t);
             sensor.AddObservation(g);
@@ -94,13 +96,13 @@ public class TurnBasedAgent : Agent
                     ln.AgentBladeAttack("Upper", 0);
                     break;
                 case 3:
-                    ln.AgentFistAttack("Middle", 0);
+                    ln.AgentBladeAttack("Cheese_CatBall", 0);
                     break;
                 case 4:
-                    ln.AgentFistAttack("Lower", 0);
+                    ln.AgentBladeAttack("Cheese_CatTeaserWand", 0);
                     break;
                 case 5:
-                    ln.AgentFistAttack("Upper", 0);
+                    ln.AgentBladeAttack("Cheese_CatKibble", 0);
                     break;
                 //case 6:
                 //    ln.AgentMagicAttack(3);
@@ -205,6 +207,8 @@ public class TurnBasedAgent : Agent
         float reward2 = CalculateReward();
         AddReward(reward2);
         EndEpisode();
+        if (ma != null)
+            UnLoadScene();
     }
 
     public void AgentDefeat()
@@ -217,6 +221,8 @@ public class TurnBasedAgent : Agent
         EndEpisode();
         ma.AgentDefeat();
         Debug.Log("EndEpisode");
+        if (ma != null)
+            UnLoadScene();
     }
 
     public void UnLoadScene()

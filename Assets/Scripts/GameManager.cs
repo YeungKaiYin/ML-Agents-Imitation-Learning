@@ -6,6 +6,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    public bool autoReset = false;
     int[] e_index=new int[4];
     public List<GameObject> enemy = new List<GameObject>();
     List<GameObject> e_marker = new List<GameObject>();
@@ -216,6 +217,11 @@ public class GameManager : MonoBehaviour
             //enemy[lc].GetComponent<Collider2D>().enabled = false;
             lc++;
         }
+    }
+
+    public void AutoReset(bool tf)
+    {
+        autoReset = tf;
     }
 
     int lastMark = 0;
@@ -695,7 +701,8 @@ public class GameManager : MonoBehaviour
             if(amountOfEnemyDefeat>=enemy.Count)
                 try
                 {
-                    GameReset();
+                    if(autoReset)
+                        GameReset();
                     TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                     tba.AgentVictory();
                 }
@@ -782,7 +789,8 @@ public class GameManager : MonoBehaviour
             tm.Dying(player[0]);
             try
             {
-                GameReset();
+                if (autoReset)
+                    GameReset();
                 TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                 tba.AgentDefeat();
             }
@@ -1212,9 +1220,9 @@ public class GameManager : MonoBehaviour
         return enemy.Count;
     }
 
-    public (float,float,bool,bool,bool) PlayerState(int id)
+    public (int,float,float,bool,bool,bool) PlayerState(int id)
     { 
-        return (p_hp[id],p_tou[id], psmList[id].IsItGrounded(),
+        return (psmList[id].CheeseCount(),p_hp[id],p_tou[id], psmList[id].IsItGrounded(),
             psmList[id].IsItBreaked(), psmList[id].IsItDying());
     }
 
