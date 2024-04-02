@@ -3,16 +3,19 @@ using UnityEngine.SceneManagement;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System;
 using System.Collections.Generic;
 
 public class TurnBasedAgent : Agent
 {
+    bool isPaused = true;
     public GameManager gm;
     public TurnManager tm;
     public LittleNightmare ln;
     int pAmount, eAmount;
     MouseAgent ma;
     bool cheeseGet = false;
+    public AgentActiveContoller aac;
 
     public override void OnEpisodeBegin()
     {
@@ -22,8 +25,16 @@ public class TurnBasedAgent : Agent
         else
             cheeseGet = false;
 
-        if (GameObject.FindGameObjectWithTag("Mouse"))
-            ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
+        try
+        {
+            if (GameObject.FindGameObjectWithTag("Mouse"))
+                ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
+        }
+        catch(Exception e)
+        {
+            ma = null;
+        }
+        
         Debug.Log("OnEpisodeBegin");
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -44,14 +55,15 @@ public class TurnBasedAgent : Agent
         {
             int c;
             float h, t;
-            bool g, b, d;
-            (c, h, t, g, b, d) = gm.PlayerState(i);
+            bool g, b, d,myturn;
+            (c, h, t, g, b, d,myturn) = gm.PlayerState(i);
             sensor.AddObservation(c);
             sensor.AddObservation(h);
             sensor.AddObservation(t);
             sensor.AddObservation(g);
             sensor.AddObservation(b);
             sensor.AddObservation(d);
+            sensor.AddObservation(myturn);
         }
         for (int i = 0; i < eAmount; i++)
         {
@@ -71,8 +83,19 @@ public class TurnBasedAgent : Agent
         ActionSpec actionSpec = ActionSpec.MakeDiscrete(7);
     }
 
+    public void IsPaused(bool tf)
+    {
+        this.isPaused = tf;
+    }
+
     public override void OnActionReceived(ActionBuffers actions)
     {
+        if (isPaused)
+        {
+            // Agent is paused, do not execute actions
+            return;
+        }
+
         if (ln.AgentTurnStart())
         {
             Debug.Log("OnActionReceived??? " + actions);
@@ -88,21 +111,27 @@ public class TurnBasedAgent : Agent
                     // Attack
                     // Implement attack logic here
                     ln.AgentBladeAttack("Middle",0);
+                    Debug.Log("agent action: 0");
                     break;
                 case 1:
                     ln.AgentBladeAttack("Lower", 0);
+                    Debug.Log("agent action: 1");
                     break;
                 case 2:
                     ln.AgentBladeAttack("Upper", 0);
+                    Debug.Log("agent action: 2");
                     break;
                 case 3:
                     ln.AgentBladeAttack("Cheese_CatBall", 0);
+                    Debug.Log("agent action: 3");
                     break;
                 case 4:
                     ln.AgentBladeAttack("Cheese_CatTeaserWand", 0);
+                    Debug.Log("agent action: 4");
                     break;
                 case 5:
                     ln.AgentBladeAttack("Cheese_CatKibble", 0);
+                    Debug.Log("agent action: 5");
                     break;
                 //case 6:
                 //    ln.AgentMagicAttack(3);
@@ -124,10 +153,34 @@ public class TurnBasedAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
-        discreteActions[0] = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal") + 1);
-        
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            discreteActions[0] = 0;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            discreteActions[0] = 1;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            discreteActions[0] = 2;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            discreteActions[0] = 3;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            discreteActions[0] = 4;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            discreteActions[0] = 5;
+        }
     }
 
     private float TurnEndReward()
@@ -207,8 +260,8 @@ public class TurnBasedAgent : Agent
         float reward2 = CalculateReward();
         AddReward(reward2);
         EndEpisode();
-        if (ma != null)
-            UnLoadScene();
+        aac.ResumeMazeAgent();
+        aac.PauseBattleAgent();
     }
 
     public void AgentDefeat()
@@ -219,10 +272,12 @@ public class TurnBasedAgent : Agent
         float reward2 = CalculateReward();
         AddReward(reward2);
         EndEpisode();
-        ma.AgentDefeat();
-        Debug.Log("EndEpisode");
-        if (ma != null)
-            UnLoadScene();
+        //ma.AgentDefeat();
+        //Debug.Log("EndEpisode");
+        //if (ma != null)
+        //    UnLoadScene();
+        aac.ResumeMazeAgent();
+        aac.PauseBattleAgent();
     }
 
     public void UnLoadScene()

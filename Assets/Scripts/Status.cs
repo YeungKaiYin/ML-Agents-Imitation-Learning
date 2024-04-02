@@ -27,7 +27,7 @@ public class Status : MonoBehaviour
     bool dying = false;
     bool grounded = true;
     bool propsGet = false;
-    LittleNightmare nm;
+    LittleNightmare ln;
     Enemy01 e01;
     Slider tou_slider;
     int cheeseCount = 0;
@@ -47,7 +47,10 @@ public class Status : MonoBehaviour
         //Debug.Log(timeToTurnStart + " " + nextTimeToTurnStart);
         tou_slider =gameObject.transform.Find("Toughness").gameObject.GetComponent<Slider>();
         if (gameObject.tag == "Player")
+        {
             bm = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonManager>();
+            ln = gameObject.GetComponent<LittleNightmare>();
+        }
         StatusRest();
         //delect it later
         PlayerPrefs.SetInt("CheeseGet", 1);
@@ -72,14 +75,21 @@ public class Status : MonoBehaviour
 
     public void CharaterAction()
     {
-        if (gameObject.name == "LittleNightmare")
-            gameObject.GetComponent<LittleNightmare>().Action();
-        if (gameObject.name == "LittleNightmare")
+        if (ln != null)
+        {
+            ln.Action();
             Debug.Log("LN CharacterAction");
+        }
+            
         if (gameObject.name == "Enemy01")
             gameObject.GetComponent<Enemy01>().Action();
         if (gameObject.tag == "Player")
             bm.p_ButtonActivate();
+    }
+
+    public bool GetAgentTurnState()
+    {
+        return ln.AgentTurnStart();
     }
 
     private void CheeseGet()

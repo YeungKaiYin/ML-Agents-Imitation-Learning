@@ -26,10 +26,10 @@ public class TurnManager : MonoBehaviour
     public List<int> knockUpCount = new List<int>();
     
     int roundDefault = 250;
-    int round;
+    //int round;
     int roundCount = 0;
-    int hoverDefault = 500;
-    int p_hoverTime = 500;
+    //int hoverDefault = 500;
+    //int p_hoverTime = 500;
 
     void Start()
     {
@@ -156,7 +156,6 @@ public class TurnManager : MonoBehaviour
                     participant[i].GetComponent<Status>().KnockUpDecrease(ft);
                 }
             }
-            gm.landing();
 
             foreach (ObjectAndTime o in sortedList)
             {
@@ -179,6 +178,7 @@ public class TurnManager : MonoBehaviour
             //}
             sortedList[0].go.GetComponent<Status>().TurnStart();
             Debug.Log(sortedList[0].go.tag+" Action TurnManager");
+            gm.landing();
             //if(goBuffer!=sortedList[0].go)
             //{
             //    sortedList[0].go.GetComponent<Status>().KnockUpClear();

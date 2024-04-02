@@ -18,7 +18,8 @@ public class Agent_Empty_Map : Agent
 
         agentRb = GetComponent<Rigidbody2D>();
 
-        CheeseTransform = GameObject.Find("cheese").transform;
+        if(CheeseTransform==null)
+        CheeseTransform = GameObject.Find("Cheese").transform;
 
     }
 

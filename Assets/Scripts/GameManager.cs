@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         return childObject;
     }
 
-    void Start()
+        void Start()
     {
         ePosBox.Add(ePos1);
         ePosBox.Add(ePos2);
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         int pi = 0;
         if (GameObject.FindGameObjectWithTag("Player"))
         {
+            if(player==null)
             player.Add(GameObject.FindGameObjectWithTag("Player"));
             p_marker.Add(findChildFromParent(player[pi].name, "Marker"));
             p_clickBox.Add(findChildFromParent(player[pi].name, "ClickBox"));
@@ -116,10 +117,11 @@ public class GameManager : MonoBehaviour
         e_tou = new List<float>();
         int lc = 0;
         //marker.Clear();
-        for(int i=1;i<5;i++)
+        for(int i=1;i<enemy.Count;i++)
         {
             if (GameObject.FindGameObjectWithTag("Enemy" + i))
             {
+                if(enemy[i]==null)
                 enemy.Add(GameObject.FindGameObjectWithTag("Enemy" + i));
             }
         }
@@ -701,8 +703,8 @@ public class GameManager : MonoBehaviour
             if(amountOfEnemyDefeat>=enemy.Count)
                 try
                 {
-                    if(autoReset)
-                        GameReset();
+                    //if(autoReset)
+                    //    GameReset();
                     TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                     tba.AgentVictory();
                 }
@@ -789,8 +791,8 @@ public class GameManager : MonoBehaviour
             tm.Dying(player[0]);
             try
             {
-                if (autoReset)
-                    GameReset();
+                //if (autoReset)
+                //    GameReset();
                 TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                 tba.AgentDefeat();
             }
@@ -801,7 +803,7 @@ public class GameManager : MonoBehaviour
 
     public void GM_pColliderMiss()
     {
-        //Debug.Log("GM_pColliderMiss");
+        Debug.Log("GM_pColliderMiss mode: "+mode);
         if (mode!="Lower" && psmList[0].IsItGrounded())
         {
             pAttackCollider[0].SetActive(false);
@@ -905,12 +907,12 @@ public class GameManager : MonoBehaviour
 
     public void landing()
     {
-        //Debug.Log("Landing");
+        //Debug.Log("enemy.Count "+ enemy.Count);
         for(int i=0;i<enemy.Count;i++)
         {
             if(enemy[i].GetComponent <Status>().IsItGrounded())
-                if(enemy[i].GetComponent<Transform>().position == ePosBoxUp[e_index[i]].transform.position)
-                    enemy[i].GetComponent<Transform>().position = ePosBox[e_index[i]].transform.position;
+                if(enemy[i].GetComponent<Transform>().position == ePosBoxUp[i].transform.position)
+                    enemy[i].GetComponent<Transform>().position = ePosBox[i].transform.position;
                 else if(enemy[i].GetComponent<Transform>().position == battlePosRightUp.transform.position)
                     enemy[i].GetComponent<Transform>().position = battlePosRight.transform.position;
             
@@ -1056,6 +1058,7 @@ public class GameManager : MonoBehaviour
 
     public void AgentActionMark(float dmg, float t_dmg, int target,String mode)
     {
+        this.mode = mode;
         this.dmg = Mathf.RoundToInt(dmg);
         this.t_dmg = Mathf.RoundToInt(t_dmg);
         if (mode == "Upper")
@@ -1220,10 +1223,10 @@ public class GameManager : MonoBehaviour
         return enemy.Count;
     }
 
-    public (int,float,float,bool,bool,bool) PlayerState(int id)
+    public (int,float,float,bool,bool,bool,bool) PlayerState(int id)
     { 
         return (psmList[id].CheeseCount(),p_hp[id],p_tou[id], psmList[id].IsItGrounded(),
-            psmList[id].IsItBreaked(), psmList[id].IsItDying());
+            psmList[id].IsItBreaked(), psmList[id].IsItDying(),psmList[id].GetAgentTurnState());
     }
 
     public (float, float, bool, bool, bool) EnemyState(int id)

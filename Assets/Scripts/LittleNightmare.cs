@@ -246,7 +246,7 @@ public class LittleNightmare : MonoBehaviour
     {
         try
         {
-            Debug.Log("Agent Blade Attack");
+            Debug.Log("Agent Blade Attack mode: "+ mode);
             //Status sm = gameObject.GetComponent<Status>();
             this.mode = mode;
             
@@ -255,14 +255,14 @@ public class LittleNightmare : MonoBehaviour
                 //ms.Lower();
                 dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
                 t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
-                gm.AgentActionMark(dmg, t_dmg, target, mode);
+                gm.AgentActionMark(dmg, t_dmg, target, "Lower");
             }
             if (mode == "Middle")
             {
                 //ms.Middle();
                 dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.1);
                 t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.3);
-                gm.AgentActionMark(dmg, t_dmg, target, mode);
+                gm.AgentActionMark(dmg, t_dmg, target, "Middle");
             }
             if (mode == "Upper")
             {
@@ -277,7 +277,7 @@ public class LittleNightmare : MonoBehaviour
                     dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.4) + (float)((double)sm.GetSiz() * 0.5);
                     t_dmg = (float)((double)sm.GetStr() * 0.2) + sm.GetSiz() + sm.GetSiz() + (float)((double)sm.GetCon() * 0.3);
                 }
-                gm.AgentActionMark(dmg, t_dmg, target, mode);
+                gm.AgentActionMark(dmg, t_dmg, target, "Upper");
             }
             if(mode=="Cheese_CatKibble")
             {

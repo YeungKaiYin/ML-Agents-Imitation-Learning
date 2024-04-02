@@ -1,0 +1,51 @@
+{
+    "BattleMouse": {
+        "checkpoints": [
+            {
+                "steps": 1593,
+                "file_path": "results\\ctest3\\BattleMouse\\BattleMouse-1593.onnx",
+                "reward": 1000.0,
+                "creation_time": 1712070574.3057594,
+                "auxillary_file_paths": [
+                    "results\\ctest3\\BattleMouse\\BattleMouse-1593.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1593,
+            "file_path": "results\\ctest3\\BattleMouse.onnx",
+            "reward": 1000.0,
+            "creation_time": 1712070574.3057594,
+            "auxillary_file_paths": [
+                "results\\ctest3\\BattleMouse\\BattleMouse-1593.pt"
+            ]
+        }
+    },
+    "Level_2": {
+        "checkpoints": [
+            {
+                "steps": 1631,
+                "file_path": "results\\ctest3\\Level_2\\Level_2-1631.onnx",
+                "reward": -1023.5,
+                "creation_time": 1712070574.3860016,
+                "auxillary_file_paths": [
+                    "results\\ctest3\\Level_2\\Level_2-1631.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1631,
+            "file_path": "results\\ctest3\\Level_2.onnx",
+            "reward": -1023.5,
+            "creation_time": 1712070574.3860016,
+            "auxillary_file_paths": [
+                "results\\ctest3\\Level_2\\Level_2-1631.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.1.1+cpu"
+    }
+}
