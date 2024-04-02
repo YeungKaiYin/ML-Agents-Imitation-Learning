@@ -764,9 +764,9 @@ public class GameManager : MonoBehaviour
             if (p_tou[0] > 0)
             {
                 float touBuffer = p_tou[0];
-                if (dmg > psmList[0].GetTou() * 0.3)
+                if (dmg > psmList[0].GetTou() * 0.5)
                 {
-                    dmg = psmList[0].GetTou() * 0.3f;
+                    dmg = psmList[0].GetTou() * 0.5f;
                     p_tou[0] -= dmg;
                     dmg -= touBuffer;
                 }
