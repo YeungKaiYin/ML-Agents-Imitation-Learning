@@ -260,6 +260,7 @@ public class TurnBasedAgent : Agent
         float reward2 = CalculateReward();
         AddReward(reward2);
         EndEpisode();
+        aac.BattleRewardToMaze(7);
         aac.ResumeMazeAgent();
         aac.PauseBattleAgent();
     }
@@ -276,6 +277,7 @@ public class TurnBasedAgent : Agent
         //Debug.Log("EndEpisode");
         //if (ma != null)
         //    UnLoadScene();
+        aac.BattleRewardToMaze(-7);
         aac.ResumeMazeAgent();
         aac.PauseBattleAgent();
     }

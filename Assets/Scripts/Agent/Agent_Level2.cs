@@ -20,6 +20,7 @@ public class Agent_Level2 : Agent
     [SerializeField] private Transform CatTransform3;
     [SerializeField] private Transform CatTransform4;
     [SerializeField] private Transform GoalTransform;
+    [SerializeField] private Transform wallTransform;
 
     string fileName = "";
 
@@ -97,6 +98,9 @@ public class Agent_Level2 : Agent
         sensor.AddObservation(GoalTransform.transform.position);
 
         sensor.AddObservation(getCheese);
+
+        sensor.AddObservation(gameObject.transform.position);
+        sensor.AddObservation(contactPoint);
     }
 
     public void IsPaused(bool tf)
@@ -181,6 +185,35 @@ public class Agent_Level2 : Agent
         }
     }
 
+    void CatStun(bool tf)
+    {
+        if (tf)
+        {
+            StartCoroutine(Stunning());
+            foreach (Collider2D c in GetComponents<Collider2D>())
+            {
+                c.enabled = false;
+            }
+        }
+
+    }
+
+    IEnumerator Stunning()
+    {
+        yield return new WaitForSeconds(3);
+        CatStun(false);
+        foreach (Collider2D c in GetComponents<Collider2D>())
+        {
+            c.enabled = true;
+        }
+    }
+
+    Vector2 contactPoint;
+    public void ReceiveContactPoint(Vector2 pos)
+    {
+        contactPoint = pos;
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -240,7 +273,14 @@ public class Agent_Level2 : Agent
         }
     }
 
-
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Wall")
+        {
+            wallTransform = collision.gameObject.transform;
+            //Debug.Log(collision.contacts[0].point);
+        }
+    }
 
 
 

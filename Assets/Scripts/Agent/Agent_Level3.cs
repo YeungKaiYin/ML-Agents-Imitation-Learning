@@ -39,7 +39,7 @@ public class Agent_Level3 : Agent
     int count_coll_cat;
 
 
-
+    bool catStun = false;
 
 
     public override void Initialize()
@@ -50,8 +50,6 @@ public class Agent_Level3 : Agent
         count_episode = 0;
 
         fileName = Application.dataPath + "/Logfile.txt";
-
-
 
     }
 
@@ -157,9 +155,9 @@ public class Agent_Level3 : Agent
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        if(!catStun)
         if (pointsIndex <= waypoints.Length - 1)
         {
 
@@ -181,7 +179,35 @@ public class Agent_Level3 : Agent
 
     }
 
+    void CatStun(bool tf)
+    {
+        catStun = tf;
+        if (tf)
+        {
+            StartCoroutine(Stunning());
+            foreach (Collider2D c in GetComponents<Collider2D>())
+            {
+                c.enabled = false;
+            }
+        }
+            
+    }
 
+    IEnumerator Stunning()
+    {
+        yield return new WaitForSeconds(3);
+        CatStun(false);
+        foreach (Collider2D c in GetComponents<Collider2D>())
+        {
+            c.enabled = true;
+        }
+    }
+
+    Vector2 contactPoint;
+    public void ReceiveContactPoint(Vector2 pos)
+    {
+        contactPoint = pos;
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {

@@ -7516,3 +7516,714 @@ PauseBattleAgent
 PauseBattleAgent
 PauseBattleAgent
 PauseBattleAgent
+OnEpisodeBegin
+SpeedCount box amount 5
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+GameOver
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+UnassignedReferenceException: The variable wallTransform of Agent_Level2 has not been assigned.
+You probably need to assign the wallTransform variable of the Agent_Level2 script in the inspector.
+OnEpisodeBegin
+SpeedCount box amount 5
+More observations (27) made than vector observation size (22). The observations will be truncated.
+GameOver
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.
+More observations (27) made than vector observation size (22). The observations will be truncated.

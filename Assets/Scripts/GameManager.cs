@@ -700,24 +700,25 @@ public class GameManager : MonoBehaviour
             amountOfEnemyDefeat++;
             esList[lastMark].IsItDying(true);
             tm.Dying(enemy[lastMark]);
-            if(amountOfEnemyDefeat>=enemy.Count)
-                try
-                {
-                    //if(autoReset)
-                    //    GameReset();
-                    TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
-                    tba.AgentVictory();
-                }
-                catch (Exception e) { Debug.Log(e); }
-            try 
+            try
             {
                 e_hpSlider[lastMark].SetActive(false);
                 e_touSlider[lastMark].SetActive(false);
                 //e_clickBox.RemoveAt(lastMark);
                 //e_marker.RemoveAt(lastMark);
             }
-            catch(Exception e) { Debug.Log(e); }
-            
+            catch (Exception e) { Debug.Log(e); }
+
+            if (amountOfEnemyDefeat>=enemy.Count)
+                try
+                {
+                    if (autoReset)
+                        GameReset();
+                    //GameReset();
+                    TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+                    tba.AgentVictory();
+                }
+                catch (Exception e) { Debug.Log(e); }
         }
         
         //if (!esList[0].IsItGrounded())
@@ -791,8 +792,9 @@ public class GameManager : MonoBehaviour
             tm.Dying(player[0]);
             try
             {
-                //if (autoReset)
-                //    GameReset();
+                if (autoReset)
+                    GameReset();
+                //GameReset();
                 TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                 tba.AgentDefeat();
             }
@@ -1175,6 +1177,7 @@ public class GameManager : MonoBehaviour
             ob.SetActive(true);
             ob.GetComponent<Slider>().value = 1;
         }
+
         for (int i = 0; i < p_tou.Count; i++)
         {
             e_hp[i] = esList[i].GetHp();
