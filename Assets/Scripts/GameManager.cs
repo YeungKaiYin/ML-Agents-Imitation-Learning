@@ -6,6 +6,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    public TurnBasedAgent tba;
     public bool autoReset = false;
     int[] e_index=new int[4];
     public List<GameObject> enemy = new List<GameObject>();
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         void Start()
     {
+        
         ePosBox.Add(ePos1);
         ePosBox.Add(ePos2);
         ePosBox.Add(ePos3);
@@ -87,6 +89,11 @@ public class GameManager : MonoBehaviour
             psmList.Add(player[pi].GetComponent<Status>());
             p_hp.Add(psmList[pi].GetHp());
             p_tou.Add(psmList[pi].GetTou());
+            try
+            {
+                tba = player[pi].GetComponent<TurnBasedAgent>();
+            }
+            catch { };
             pi++;
         }
 
@@ -715,7 +722,7 @@ public class GameManager : MonoBehaviour
                     if (autoReset)
                         GameReset();
                     //GameReset();
-                    TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+                    //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                     tba.AgentVictory();
                 }
                 catch (Exception e) { Debug.Log(e); }
@@ -736,6 +743,7 @@ public class GameManager : MonoBehaviour
             pull = false;
         }
         knockup = false;
+        tba.AgentTurnEnd(true);
         Invoke("GM_TurnEnd", 0.3f);
     }
 
@@ -795,11 +803,12 @@ public class GameManager : MonoBehaviour
                 if (autoReset)
                     GameReset();
                 //GameReset();
-                TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+                //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
                 tba.AgentDefeat();
             }
             catch(Exception e) { Debug.Log(e); }
         }
+        tba.AgentTurnEnd(false);
         Invoke("GM_eTurnEnd", 1f);
     }
 
@@ -1228,13 +1237,15 @@ public class GameManager : MonoBehaviour
 
     public (int,float,float,bool,bool,bool,bool) PlayerState(int id)
     { 
-        return (psmList[id].CheeseCount(),p_hp[id],p_tou[id], psmList[id].IsItGrounded(),
+        return (psmList[id].CheeseCount(),p_hpSlider[id].GetComponent<Slider>().value, 
+            p_touSlider[id].GetComponent<Slider>().value, psmList[id].IsItGrounded(),
             psmList[id].IsItBreaked(), psmList[id].IsItDying(),psmList[id].GetAgentTurnState());
     }
 
     public (float, float, bool, bool, bool) EnemyState(int id)
     {
-        return (e_hp[id], e_tou[id], esList[id].IsItGrounded(),
+        return (e_hpSlider[id].GetComponent<Slider>().value, 
+            e_touSlider[id].GetComponent<Slider>().value, esList[id].IsItGrounded(),
             esList[id].IsItBreaked(), esList[id].IsItDying());
     }
 

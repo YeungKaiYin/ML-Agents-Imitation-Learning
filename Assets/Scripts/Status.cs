@@ -35,7 +35,6 @@ public class Status : MonoBehaviour
     public TextMeshProUGUI tmpText;
     public Animator cheeseAnimator;
     public GameObject effect_Spiral;
-    public GameObject hp_Slider,poise_Slider;
 
     private void Awake()
     {
@@ -47,8 +46,6 @@ public class Status : MonoBehaviour
         timeToTurnStart = 10000 / speed;
         //Debug.Log(timeToTurnStart + " " + nextTimeToTurnStart);
         tou_slider =gameObject.transform.Find("Toughness").gameObject.GetComponent<Slider>();
-        //hp_Slider = gameObject.transform.Find("Health").gameObject;
-        //poise_Slider = gameObject.transform.Find("Toughness").gameObject;
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (gameObject.tag == "Player")
         {
@@ -75,8 +72,6 @@ public class Status : MonoBehaviour
         IsItGrounded(true);
         if (gameObject.tag == "Player")
             CheeseGet();
-        //hp_Slider.SetActive(true);
-        //poise_Slider.SetActive(true);
         //gm.GameReset();
     }
 

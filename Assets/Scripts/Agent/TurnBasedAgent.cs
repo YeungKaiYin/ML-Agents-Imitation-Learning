@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class TurnBasedAgent : Agent
 {
-    bool isPaused = true;
+    public bool isPaused = true;
     public GameManager gm;
     public TurnManager tm;
     public LittleNightmare ln;
@@ -20,6 +20,10 @@ public class TurnBasedAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Reset the game state at the beginning of each episode
+        if (aac == null)
+            isPaused = false;
+        else
+            isPaused = true;
         if (PlayerPrefs.GetInt("Cheese") == 1)
             cheeseGet = true;
         else
@@ -38,7 +42,7 @@ public class TurnBasedAgent : Agent
         Debug.Log("OnEpisodeBegin");
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        gm.GameReset();
+        //gm.GameReset();
         if (!tm)
             tm = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
 
@@ -139,16 +143,17 @@ public class TurnBasedAgent : Agent
             }
 
             ln.AgentTurnEnd();
+            //AddReward(TurnEndReward());
         }
 
-        if (IsGameOver())
-        {
-            // Provide a reward based on the game state and the action taken
-            float reward = CalculateReward();
-            AddReward(reward);
+        //if (IsGameOver())
+        //{
+        //    // Provide a reward based on the game state and the action taken
+        //    float reward = CalculateReward();
+        //    AddReward(reward);
 
-            EndEpisode();
-        }
+        //    EndEpisode();
+        //}
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -183,23 +188,30 @@ public class TurnBasedAgent : Agent
         }
     }
 
-    private float TurnEndReward()
+    public void AgentTurnEnd(bool agentTurn)
+    {
+        AddReward(TurnEndReward(agentTurn));
+    }
+
+    private float TurnEndReward(bool agentTurn)
     {
         float score = 0;
+        if(!agentTurn)
         for (int i = 0; i < pAmount; i++)
         {
-            float pHealth = gm.PlayerState(i).Item1;
-            float pToughness = gm.PlayerState(i).Item2;
+            float pHealth = gm.PlayerState(i).Item2;
+            float pToughness = gm.PlayerState(i).Item3;
             if (pHealth <= 1)
             {
                 score -= 1.5f*(1 - pHealth);
             }
             if (pToughness <= 1)
             {
-                score -= 1 - pToughness;
+                score -= 0.5f*(1 - pToughness);
             }
         }
 
+        if(agentTurn)
         for (int i = 0; i < eAmount; i++)
         {
             float eHealth = gm.EnemyState(i).Item1;
@@ -207,11 +219,11 @@ public class TurnBasedAgent : Agent
             bool eBreak = gm.EnemyState(i).Item4;
             if (eHealth <= 1)
             {
-                score += 1.5f * (1 - eHealth);
+                score += 3f * (1 - eHealth);
             }
             if (eToughness <= 1)
             {
-                score += 1 - eToughness;
+                score += 3f * (1 - eToughness);
             }
             if (eBreak)
                 score += 3;
@@ -225,7 +237,7 @@ public class TurnBasedAgent : Agent
         float score = 0;
         for (int i = 0; i < pAmount; i++)
         {
-            float pHealth = gm.PlayerState(i).Item1;
+            float pHealth = gm.PlayerState(i).Item2;
             if (pHealth <= 1)
             {
                 score -= 1-pHealth;
@@ -239,6 +251,7 @@ public class TurnBasedAgent : Agent
             {
                 score += 14;
             }
+            
         }
         return score;
     }
@@ -259,27 +272,39 @@ public class TurnBasedAgent : Agent
         // Provide a reward based on the game state and the action taken
         float reward2 = CalculateReward();
         AddReward(reward2);
+
+        float rewardcheck = GetCumulativeReward();
+        Debug.Log("Current reward: " + rewardcheck);
         EndEpisode();
-        aac.BattleRewardToMaze(7);
-        aac.ResumeMazeAgent();
-        aac.PauseBattleAgent();
+        if(aac!=null)
+        {
+            aac.BattleRewardToMaze(7);
+            aac.ResumeMazeAgent();
+            aac.PauseBattleAgent();
+        }
     }
 
     public void AgentDefeat()
     {
-        float reward = 100*(0+tm.RoundNumber());
+        float reward = 10*(1+tm.RoundNumber());
         AddReward(-reward);
 
         float reward2 = CalculateReward();
         AddReward(reward2);
+
+        float rewardcheck = GetCumulativeReward();
+        Debug.Log("Current reward: " + rewardcheck);
         EndEpisode();
         //ma.AgentDefeat();
         //Debug.Log("EndEpisode");
         //if (ma != null)
         //    UnLoadScene();
-        aac.BattleRewardToMaze(-7);
-        aac.ResumeMazeAgent();
-        aac.PauseBattleAgent();
+        if (aac != null)
+        {
+            aac.BattleRewardToMaze(-7);
+            aac.ResumeMazeAgent();
+            aac.PauseBattleAgent();
+        }
     }
 
     public void UnLoadScene()

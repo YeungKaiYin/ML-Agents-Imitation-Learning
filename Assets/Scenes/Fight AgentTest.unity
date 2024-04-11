@@ -4372,8 +4372,6 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
-  hp_Slider: {fileID: 0}
-  poise_Slider: {fileID: 0}
 --- !u!114 &490694793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6728,8 +6726,6 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
-  hp_Slider: {fileID: 0}
-  poise_Slider: {fileID: 0}
 --- !u!114 &831310063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9643,8 +9639,6 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
-  hp_Slider: {fileID: 0}
-  poise_Slider: {fileID: 0}
 --- !u!114 &1180334368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10254,6 +10248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07073d837ad0624eb749d6ec2e14260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tba: {fileID: 0}
   autoReset: 1
   enemy:
   - {fileID: 1627523153}
@@ -12302,23 +12297,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bm: {fileID: 0}
   animator: {fileID: 1892447569}
-  s_str: 5
-  s_dex: 5
-  s_int: 5
-  s_con: 50
-  s_app: 5
-  s_pow: 5
-  s_siz: 5
-  s_edu: 5
-  s_mov: 5
+  s_str: 60
+  s_dex: 6
+  s_int: 6
+  s_con: 500
+  s_app: 6
+  s_pow: 6
+  s_siz: 6
+  s_edu: 6
+  s_mov: 6
   hp: 0
   tou: 0
   enemy_code: 
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 495119332}
-  hp_Slider: {fileID: 0}
-  poise_Slider: {fileID: 0}
 --- !u!61 &1627523161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12489,14 +12482,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bm: {fileID: 1032693015}
   animator: {fileID: 2044894041}
-  s_str: 500
-  s_dex: 6
-  s_int: 5
-  s_con: 5
-  s_app: 5
+  s_str: 6
+  s_dex: 12
+  s_int: 8
+  s_con: 140
+  s_app: 8
   s_pow: 5
-  s_siz: 5
-  s_edu: 5
+  s_siz: 6
+  s_edu: 8
   s_mov: 5
   hp: 0
   tou: 0
@@ -12504,8 +12497,6 @@ MonoBehaviour:
   tmpText: {fileID: 138266544}
   cheeseAnimator: {fileID: 2214213291813722841}
   effect_Spiral: {fileID: 1106088032}
-  hp_Slider: {fileID: 0}
-  poise_Slider: {fileID: 0}
 --- !u!50 &1655227688
 Rigidbody2D:
   serializedVersion: 4
@@ -12560,7 +12551,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655227681}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2451c17e4f4f67844b91082808e20f3e, type: 3}
   m_Name: 
@@ -12569,6 +12560,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  isPaused: 0
   gm: {fileID: 1306137956}
   tm: {fileID: 1834347173}
   ln: {fileID: 1655227686}
