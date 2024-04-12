@@ -52,7 +52,7 @@ public class Status : MonoBehaviour
             bm = GameObject.FindGameObjectWithTag("ButtonManager").GetComponent<ButtonManager>();
             ln = gameObject.GetComponent<LittleNightmare>();
         }
-        StatusRest();
+        StatusReset();
         //delect it later
         PlayerPrefs.SetInt("CheeseGet", 1);
     }
@@ -62,7 +62,7 @@ public class Status : MonoBehaviour
         //tmpText.text = "0";
     }
 
-    public void StatusRest()
+    public void StatusReset()
     {
         focusStack = 0;
         IsItBreaked(false);
@@ -72,6 +72,8 @@ public class Status : MonoBehaviour
         IsItGrounded(true);
         if (gameObject.tag == "Player")
             CheeseGet();
+        if (gameObject.tag == "Enemy1")
+            GetComponent<Status>().StatusReset();
         //gm.GameReset();
     }
 

@@ -1154,11 +1154,11 @@ public class GameManager : MonoBehaviour
         //    bm.p_MagicButtonActivate(false);
         foreach (Status ob in psmList)
         {
-            ob.StatusRest();
+            ob.StatusReset();
         }
         foreach (Status ob in esList)
         {
-            ob.StatusRest();
+            ob.StatusReset();
         }
 
         foreach (GameObject ob in p_hpSlider)

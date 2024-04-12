@@ -98,6 +98,11 @@ public class Enemy01 : MonoBehaviour
             orderCount = 0;
     }
 
+    public void OrderCountReset()
+    {
+        orderCount = 0;
+    }
+
     public void ToGM_Action()
     {
         if (gameObject.tag == "Enemy1")
