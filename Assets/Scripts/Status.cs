@@ -73,7 +73,7 @@ public class Status : MonoBehaviour
         if (gameObject.tag == "Player")
             CheeseGet();
         if (gameObject.tag == "Enemy1")
-            GetComponent<Status>().StatusReset();
+            GetComponent<Enemy01>().OrderCountReset();
         //gm.GameReset();
     }
 

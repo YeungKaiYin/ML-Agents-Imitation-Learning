@@ -16,6 +16,10 @@ public class TurnBasedAgent : Agent
     MouseAgent ma;
     bool cheeseGet = false;
     public AgentActiveContoller aac;
+    public LineRenderer lineRenderer;
+    public List<Vector3> curvePoints = new List<Vector3>();
+    public float count = 0;
+    public float xDistance = 0.5f;
 
     public override void OnEpisodeBegin()
     {
@@ -240,18 +244,14 @@ public class TurnBasedAgent : Agent
             float pHealth = gm.PlayerState(i).Item2;
             if (pHealth <= 1)
             {
-                score -= 1-pHealth;
+                score -= 14*(1-pHealth);
             }
         }
 
         for (int i = 0; i < eAmount; i++)
         {
             float eHealth = gm.EnemyState(i).Item1;
-            if (eHealth <= 0)
-            {
-                score += 14;
-            }
-            
+            score += 14 * (1 - eHealth);      
         }
         return score;
     }
@@ -275,6 +275,11 @@ public class TurnBasedAgent : Agent
 
         float rewardcheck = GetCumulativeReward();
         Debug.Log("Current reward: " + rewardcheck);
+        curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        count += xDistance;
+        lineRenderer.positionCount = curvePoints.Count;
+        lineRenderer.SetPositions(curvePoints.ToArray());
+
         EndEpisode();
         if(aac!=null)
         {
@@ -287,13 +292,18 @@ public class TurnBasedAgent : Agent
     public void AgentDefeat()
     {
         float reward = 10*(1+tm.RoundNumber());
-        AddReward(-reward);
+        AddReward(reward);
 
         float reward2 = CalculateReward();
         AddReward(reward2);
 
         float rewardcheck = GetCumulativeReward();
         Debug.Log("Current reward: " + rewardcheck);
+        curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        count += xDistance;
+        lineRenderer.positionCount = curvePoints.Count;
+        lineRenderer.SetPositions(curvePoints.ToArray());
+
         EndEpisode();
         //ma.AgentDefeat();
         //Debug.Log("EndEpisode");

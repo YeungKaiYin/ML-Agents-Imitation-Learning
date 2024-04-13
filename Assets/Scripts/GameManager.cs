@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         ePosBoxUp.Add(ePos2Up);
         ePosBoxUp.Add(ePos3Up);
         ePosBoxUp.Add(ePos4Up);
-        if (GameObject.FindGameObjectWithTag("TurnManager"))
+        if (tm==null)
             tm = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
 
         int pi = 0;
