@@ -5,9 +5,15 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditor;
 
 public class TurnBasedAgent : Agent
 {
+    [SerializeField]
+    private int episodeCount = 0;
+    [SerializeField]
+    private int episodeLimit = 10000;
     public bool isPaused = true;
     public GameManager gm;
     public TurnManager tm;
@@ -43,7 +49,7 @@ public class TurnBasedAgent : Agent
             ma = null;
         }
         
-        Debug.Log("OnEpisodeBegin");
+        UnityEngine.Debug.Log("OnEpisodeBegin");
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //gm.GameReset();
@@ -106,7 +112,7 @@ public class TurnBasedAgent : Agent
 
         if (ln.AgentTurnStart())
         {
-            Debug.Log("OnActionReceived??? " + actions);
+            UnityEngine.Debug.Log("OnActionReceived??? " + actions);
             base.OnActionReceived(actions);
             // Convert the action values to discrete actions
             int action = actions.DiscreteActions[0];
@@ -119,27 +125,27 @@ public class TurnBasedAgent : Agent
                     // Attack
                     // Implement attack logic here
                     ln.AgentBladeAttack("Middle",0);
-                    Debug.Log("agent action: 0");
+                    UnityEngine.Debug.Log("agent action: 0");
                     break;
                 case 1:
                     ln.AgentBladeAttack("Lower", 0);
-                    Debug.Log("agent action: 1");
+                    UnityEngine.Debug.Log("agent action: 1");
                     break;
                 case 2:
                     ln.AgentBladeAttack("Upper", 0);
-                    Debug.Log("agent action: 2");
+                    UnityEngine.Debug.Log("agent action: 2");
                     break;
                 case 3:
                     ln.AgentBladeAttack("Cheese_CatBall", 0);
-                    Debug.Log("agent action: 3");
+                    UnityEngine.Debug.Log("agent action: 3");
                     break;
                 case 4:
                     ln.AgentBladeAttack("Cheese_CatTeaserWand", 0);
-                    Debug.Log("agent action: 4");
+                    UnityEngine.Debug.Log("agent action: 4");
                     break;
                 case 5:
                     ln.AgentBladeAttack("Cheese_CatKibble", 0);
-                    Debug.Log("agent action: 5");
+                    UnityEngine.Debug.Log("agent action: 5");
                     break;
                 //case 6:
                 //    ln.AgentMagicAttack(3);
@@ -262,8 +268,12 @@ public class TurnBasedAgent : Agent
         return false; // Replace with actual game over condition
     }
 
+    public int winCount = 0;
+    public int loseCount=0;
     public void AgentVictory()
     {
+        winCount++;
+        UnityEngine.Debug.Log("Win :"+winCount+"\n"+ "Lose :" + loseCount+"\nWin Rate :"+(winCount/loseCount));
         float reward = 100 * (10 - tm.RoundNumber());
         if (reward < 0)
             reward = 0;
@@ -274,13 +284,15 @@ public class TurnBasedAgent : Agent
         AddReward(reward2);
 
         float rewardcheck = GetCumulativeReward();
-        Debug.Log("Current reward: " + rewardcheck);
+        UnityEngine.Debug.Log("Current reward: " + rewardcheck);
         curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
         count += xDistance;
         lineRenderer.positionCount = curvePoints.Count;
         lineRenderer.SetPositions(curvePoints.ToArray());
 
         EndEpisode();
+        episodeCount++;
+
         if(aac!=null)
         {
             aac.BattleRewardToMaze(7);
@@ -291,6 +303,8 @@ public class TurnBasedAgent : Agent
 
     public void AgentDefeat()
     {
+        loseCount++;
+        UnityEngine.Debug.Log("Win :" + winCount + "\n" + "Lose :" + loseCount + "\nWin Rate :" + (winCount / loseCount));
         float reward = 10*(1+tm.RoundNumber());
         AddReward(reward);
 
@@ -298,13 +312,14 @@ public class TurnBasedAgent : Agent
         AddReward(reward2);
 
         float rewardcheck = GetCumulativeReward();
-        Debug.Log("Current reward: " + rewardcheck);
+        UnityEngine.Debug.Log("Current reward: " + rewardcheck);
         curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
         count += xDistance;
         lineRenderer.positionCount = curvePoints.Count;
         lineRenderer.SetPositions(curvePoints.ToArray());
 
         EndEpisode();
+        episodeCount++;
         //ma.AgentDefeat();
         //Debug.Log("EndEpisode");
         //if (ma != null)
@@ -322,9 +337,8 @@ public class TurnBasedAgent : Agent
         SceneManager.UnloadSceneAsync("Fight AgentTest");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void EndEditor()
     {
-        if (collision.TryGetComponent(out GameOver gameOver))
-            Debug.Log("GameOver");
+        EditorApplication.isPlaying = false;
     }
 }
