@@ -274,7 +274,7 @@ public class TurnBasedAgent : Agent
     {
         winCount++;
         UnityEngine.Debug.Log("Win :"+winCount+"\n"+ "Lose :" + loseCount+"\nWin Rate :"+(winCount/loseCount));
-        float reward = 100 * (10 - tm.RoundNumber());
+        float reward = 2 * (10 - tm.RoundNumber());
         if (reward < 0)
             reward = 0;
         AddReward(reward);
@@ -305,7 +305,7 @@ public class TurnBasedAgent : Agent
     {
         loseCount++;
         UnityEngine.Debug.Log("Win :" + winCount + "\n" + "Lose :" + loseCount + "\nWin Rate :" + (winCount / loseCount));
-        float reward = 10*(1+tm.RoundNumber());
+        float reward = 1*(1+tm.RoundNumber());
         AddReward(reward);
 
         float reward2 = CalculateReward();
