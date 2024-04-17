@@ -6,11 +6,12 @@ using UnityEditor;
 
 public class Test : MonoBehaviour
 {
-    private void FixedUpdate()
+    public LineRenderer lineRenderer;
+    public Color newColor;
+    public Color[] pointColors;
+
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            EditorApplication.isPlaying = false;
-        }
-    }
+        
+    } 
 }

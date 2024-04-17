@@ -133,6 +133,11 @@ public class LittleNightmare : MonoBehaviour
             }
             dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.5) + (float)((double)sm.GetEdu() * 0.8);
             t_dmg = (float)((double)sm.GetStr() * 0.2) + sm.GetSiz() + sm.GetSiz() + (float)((double)sm.GetCon() * 0.3);
+            if (sm.CheeseCount() <= 0)
+            {
+                dmg = dmg * 0.3f;
+                t_dmg = t_dmg * 0.3f;
+            }
             gm.ActionMark(dmg, t_dmg, 1, "Upper", "Cheese_To_Kibble");
         }
     }
@@ -161,6 +166,11 @@ public class LittleNightmare : MonoBehaviour
             }
             dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2 + (float)((double)sm.GetDex() * 0.3));
             t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.5) + (float)((double)sm.GetEdu() * 0.8);
+            if (sm.CheeseCount() <= 0)
+            {
+                dmg = dmg * 0.3f;
+                t_dmg = t_dmg * 0.3f;
+            }
             gm.ActionMark(dmg, t_dmg, 1, "Middle", "Cheese_To_Ball");
         }
     }
@@ -189,6 +199,11 @@ public class LittleNightmare : MonoBehaviour
             }
             dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
             t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+            if (sm.CheeseCount() <= 0)
+            {
+                dmg = dmg * 0.3f;
+                t_dmg = t_dmg * 0.3f;
+            }
             gm.ActionMark(dmg, t_dmg, 1, "Lower", "Cheese_To_CatTeaser");
         }
     }
@@ -283,18 +298,36 @@ public class LittleNightmare : MonoBehaviour
             {
                 dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.5) + (float)((double)sm.GetEdu() * 0.8);
                 t_dmg = (float)((double)sm.GetStr() * 0.2) + sm.GetSiz() + sm.GetSiz() + (float)((double)sm.GetCon() * 0.3);
+                if (sm.CheeseCount() <= 0)
+                {
+                    dmg = dmg * 0.3f;
+                    t_dmg = t_dmg * 0.3f;
+                }
+                sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Upper");
             }
             if (mode == "Cheese_CatTeaserWand")
             {
                 dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
                 t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.2) + (float)((double)sm.GetEdu() * 0.5);
+                if (sm.CheeseCount() <= 0)
+                {
+                    dmg = dmg * 0.3f;
+                    t_dmg = t_dmg * 0.3f;
+                }
+                sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Lower");
             }
             if (mode == "Cheese_CatBall")
             {
                 dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2) + (float)((double)sm.GetDex() * 0.3);
                 t_dmg = sm.GetInt() + (float)((double)sm.GetApp() * 0.5) + (float)((double)sm.GetEdu() * 0.8);
+                if (sm.CheeseCount() <= 0)
+                {
+                    dmg = dmg * 0.3f;
+                    t_dmg = t_dmg * 0.3f;
+                }
+                sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Middle");
             }
         }
@@ -370,7 +403,7 @@ public class LittleNightmare : MonoBehaviour
         // 
 
         //Status sm = gameObject.GetComponent<Status>();
-        if(PlayerPrefs.GetInt("CheeseGet")==1&&sm.CheeseCount()>0)
+        if(sm.CheeseCount()>0)
         {
             if (animator != null)
             {

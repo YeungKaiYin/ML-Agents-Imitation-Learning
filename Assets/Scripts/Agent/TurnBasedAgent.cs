@@ -20,36 +20,29 @@ public class TurnBasedAgent : Agent
     public LittleNightmare ln;
     int pAmount, eAmount;
     MouseAgent ma;
-    bool cheeseGet = false;
+    bool cheeseGet = true;
     public AgentActiveContoller aac;
-    public LineRenderer lineRenderer;
-    public List<Vector3> curvePoints = new List<Vector3>();
+    public LineRenderer rewardLineRenderer, cheeseRemainLineRenderer, stepLineRenderer;
+    public List<Vector3> r_curvePoints = new List<Vector3>();
+    public List<Vector3> c_curvePoints = new List<Vector3>();
+    public List<Vector3> s_curvePoints = new List<Vector3>();
     public float count = 0;
     public float xDistance = 0.5f;
+    int step = 0;
+    //public Status sm;
 
-    public override void OnEpisodeBegin()
+    private void Awake()
     {
-        // Reset the game state at the beginning of each episode
-        if (aac == null)
-            isPaused = false;
-        else
-            isPaused = true;
-        if (PlayerPrefs.GetInt("Cheese") == 1)
-            cheeseGet = true;
-        else
-            cheeseGet = false;
-
         try
         {
             if (GameObject.FindGameObjectWithTag("Mouse"))
                 ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             ma = null;
         }
-        
-        UnityEngine.Debug.Log("OnEpisodeBegin");
+
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //gm.GameReset();
@@ -58,6 +51,18 @@ public class TurnBasedAgent : Agent
 
         pAmount = gm.PlayerAmount();
         eAmount = gm.EnemyAmount();
+    }
+
+    public override void OnEpisodeBegin()
+    {
+        // Reset the game state at the beginning of each episode
+        step = 0;
+        if (aac == null)
+            isPaused = false;
+        else
+            isPaused = true;
+
+        UnityEngine.Debug.Log("OnEpisodeBegin");
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -151,7 +156,7 @@ public class TurnBasedAgent : Agent
                 //    ln.AgentMagicAttack(3);
                 //    break;
             }
-
+            step++;
             ln.AgentTurnEnd();
             //AddReward(TurnEndReward());
         }
@@ -247,6 +252,8 @@ public class TurnBasedAgent : Agent
         float score = 0;
         for (int i = 0; i < pAmount; i++)
         {
+            int cheeseCount = gm.PlayerState(i).Item1;
+            score += (7 * cheeseCount);
             float pHealth = gm.PlayerState(i).Item2;
             if (pHealth <= 1)
             {
@@ -274,7 +281,7 @@ public class TurnBasedAgent : Agent
     {
         winCount++;
         UnityEngine.Debug.Log("Win :"+winCount+"\n"+ "Lose :" + loseCount+"\nWin Rate :"+(winCount/loseCount));
-        float reward = 2 * (10 - tm.RoundNumber());
+        float reward = (float)(0.5 * (10 - (float)tm.RoundNumber()));
         if (reward < 0)
             reward = 0;
         AddReward(reward);
@@ -284,11 +291,19 @@ public class TurnBasedAgent : Agent
         AddReward(reward2);
 
         float rewardcheck = GetCumulativeReward();
+        if (rewardcheck < 65)
+            SetReward(60);
         UnityEngine.Debug.Log("Current reward: " + rewardcheck);
-        curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        r_curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        c_curvePoints.Add(new Vector3(count, gm.PlayerState(0).Item1, 10.0f));
+        s_curvePoints.Add(new Vector3(count, step, 10.0f));
         count += xDistance;
-        lineRenderer.positionCount = curvePoints.Count;
-        lineRenderer.SetPositions(curvePoints.ToArray());
+        rewardLineRenderer.positionCount = r_curvePoints.Count;
+        rewardLineRenderer.SetPositions(r_curvePoints.ToArray());
+        cheeseRemainLineRenderer.positionCount = r_curvePoints.Count;
+        cheeseRemainLineRenderer.SetPositions(r_curvePoints.ToArray());
+        stepLineRenderer.positionCount = r_curvePoints.Count;
+        stepLineRenderer.SetPositions(r_curvePoints.ToArray());
 
         EndEpisode();
         episodeCount++;
@@ -305,18 +320,26 @@ public class TurnBasedAgent : Agent
     {
         loseCount++;
         UnityEngine.Debug.Log("Win :" + winCount + "\n" + "Lose :" + loseCount + "\nWin Rate :" + (winCount / loseCount));
-        float reward = 1*(1+tm.RoundNumber());
+        float reward = (float)(0.2 * (10 - (float)tm.RoundNumber()));
         AddReward(reward);
 
         float reward2 = CalculateReward();
         AddReward(reward2);
 
         float rewardcheck = GetCumulativeReward();
+        if (rewardcheck > 60)
+            SetReward(60);
         UnityEngine.Debug.Log("Current reward: " + rewardcheck);
-        curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        r_curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
+        c_curvePoints.Add(new Vector3(count, gm.PlayerState(0).Item1, 10.0f));
+        s_curvePoints.Add(new Vector3(count, step, 10.0f));
         count += xDistance;
-        lineRenderer.positionCount = curvePoints.Count;
-        lineRenderer.SetPositions(curvePoints.ToArray());
+        rewardLineRenderer.positionCount = r_curvePoints.Count;
+        rewardLineRenderer.SetPositions(r_curvePoints.ToArray());
+        cheeseRemainLineRenderer.positionCount = r_curvePoints.Count;
+        cheeseRemainLineRenderer.SetPositions(r_curvePoints.ToArray());
+        stepLineRenderer.positionCount = r_curvePoints.Count;
+        stepLineRenderer.SetPositions(r_curvePoints.ToArray());
 
         EndEpisode();
         episodeCount++;
