@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    Vector2 contactPoint;
+    Vector2 contactPoint, outPoint=(new Vector2 (999,999));
     public Agent_Level2 al2;
     public Agent_Level3 al3;
 
@@ -19,10 +19,14 @@ public class Sensor : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
-    }
+        if (collision.tag == "Wall")
+        {
+            contactPoint = outPoint;
+            Debug.Log("Collision contact point Exit: " + contactPoint);
+        }
+;    }
 
     public Vector2 GetContactPoint()
     {

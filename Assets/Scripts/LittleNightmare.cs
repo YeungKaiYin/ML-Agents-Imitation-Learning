@@ -19,6 +19,7 @@ public class LittleNightmare : MonoBehaviour
     Status sm;
     ModeSwitch ms;
     bool myTurn = false;
+    bool human = true;
     Animator animator;
     //private void Awake()
     //{
@@ -50,9 +51,17 @@ public class LittleNightmare : MonoBehaviour
         myTurn = true;
     }
 
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
+    }
+
     public bool AgentTurnStart()
     {
-        return myTurn;
+        if (!human)
+            return myTurn;
+        else
+            return false;
     }
 
     public void AgentTurnEnd()

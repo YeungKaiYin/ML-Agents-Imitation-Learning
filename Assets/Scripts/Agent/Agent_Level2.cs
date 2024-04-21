@@ -13,6 +13,7 @@ public class Agent_Level2 : Agent
     public GameManager gm;
     public CheeseStatus cs;
     public static bool getCheese = false;
+    public Sensor s1;
 
     [SerializeField] private Transform CheeseTransform;
     [SerializeField] private Transform CatTransform1;
@@ -20,7 +21,6 @@ public class Agent_Level2 : Agent
     [SerializeField] private Transform CatTransform3;
     [SerializeField] private Transform CatTransform4;
     [SerializeField] private Transform GoalTransform;
-    [SerializeField] private Transform wallTransform;
 
     string fileName = "";
 
@@ -100,7 +100,7 @@ public class Agent_Level2 : Agent
         sensor.AddObservation(getCheese);
 
         sensor.AddObservation(gameObject.transform.position);
-        sensor.AddObservation(contactPoint);
+        sensor.AddObservation(s1.GetContactPoint());
     }
 
     public void IsPaused(bool tf)
@@ -272,16 +272,5 @@ public class Agent_Level2 : Agent
             EndEpisode();
         }
     }
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag=="Wall")
-        {
-            wallTransform = collision.gameObject.transform;
-            //Debug.Log(collision.contacts[0].point);
-        }
-    }
-
-
 
 }

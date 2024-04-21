@@ -861,6 +861,7 @@ public class GameManager : MonoBehaviour
 
     public void GM_TurnEnd()
     {
+        //Debug.Log("CheeseCount :" + psmList[0].CheeseCount());
         if (esList[lastMark].GetAnimator())
             esList[lastMark].SetAnimator_Bool("Cat_Idle", true);
 

@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class ModeSwitch : MonoBehaviour
 {
-    public TextMeshProUGUI tmpText;
+    public TextMeshProUGUI tmpText_HumanAI;
     public UnityEngine.UI.Button upper,middle, lower,stand,cheese;
     ColorBlock theColor;
     public LittleNightmare ln;
+    bool human = true;
     void Start()
     {
+        if(ln==null)
         ln = GameObject.FindGameObjectWithTag("Player").GetComponent<LittleNightmare>();
         ButtonActive();
         //theColor = upper.colors;
@@ -21,6 +23,23 @@ public class ModeSwitch : MonoBehaviour
     public void TextChange()
     {
         
+    }
+
+    public void HumanOrAI()
+    {
+        if (human)
+        {
+            tmpText_HumanAI.SetText("AI");
+            human = false;
+            ln.HumanOrAI(false);
+        }
+        else
+        {
+            tmpText_HumanAI.SetText("Human");
+            human = true;
+            ln.HumanOrAI(true);
+        }
+        Debug.Log("HumanOrAI :" + (human?"Human":"AI"));
     }
 
     public void ButtonActive()

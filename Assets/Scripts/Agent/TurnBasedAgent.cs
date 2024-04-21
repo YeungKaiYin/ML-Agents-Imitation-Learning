@@ -29,6 +29,7 @@ public class TurnBasedAgent : Agent
     public float count = 0;
     public float xDistance = 0.5f;
     int step = 0;
+    int cheeseCount = 3;
     //public Status sm;
 
     private void Awake()
@@ -48,6 +49,8 @@ public class TurnBasedAgent : Agent
         //gm.GameReset();
         if (!tm)
             tm = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
+        //if (sm == null)
+        //    sm = GetComponent<Status>();
 
         pAmount = gm.PlayerAmount();
         eAmount = gm.EnemyAmount();
@@ -56,6 +59,7 @@ public class TurnBasedAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Reset the game state at the beginning of each episode
+        cheeseCount = 3;
         step = 0;
         if (aac == null)
             isPaused = false;
@@ -143,18 +147,23 @@ public class TurnBasedAgent : Agent
                 case 3:
                     ln.AgentBladeAttack("Cheese_CatBall", 0);
                     UnityEngine.Debug.Log("agent action: 3");
+                    cheeseCount--;
                     break;
                 case 4:
                     ln.AgentBladeAttack("Cheese_CatTeaserWand", 0);
                     UnityEngine.Debug.Log("agent action: 4");
+                    cheeseCount--;
                     break;
                 case 5:
                     ln.AgentBladeAttack("Cheese_CatKibble", 0);
                     UnityEngine.Debug.Log("agent action: 5");
+                    cheeseCount--;
                     break;
-                //case 6:
-                //    ln.AgentMagicAttack(3);
-                //    break;
+                    //case 6:
+                    //    ln.AgentMagicAttack(3);
+                    //    break;
+                    //UnityEngine.Debug.Log("gmCheeseCount :" + gm.PlayerState(0).Item1);
+                    //UnityEngine.Debug.Log("smCheeseCount :" + sm.CheeseCount());
             }
             step++;
             ln.AgentTurnEnd();
@@ -295,15 +304,15 @@ public class TurnBasedAgent : Agent
             SetReward(60);
         UnityEngine.Debug.Log("Current reward: " + rewardcheck);
         r_curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
-        c_curvePoints.Add(new Vector3(count, gm.PlayerState(0).Item1, 10.0f));
+        c_curvePoints.Add(new Vector3(count, cheeseCount, 10.0f));
         s_curvePoints.Add(new Vector3(count, step, 10.0f));
         count += xDistance;
         rewardLineRenderer.positionCount = r_curvePoints.Count;
         rewardLineRenderer.SetPositions(r_curvePoints.ToArray());
-        cheeseRemainLineRenderer.positionCount = r_curvePoints.Count;
-        cheeseRemainLineRenderer.SetPositions(r_curvePoints.ToArray());
-        stepLineRenderer.positionCount = r_curvePoints.Count;
-        stepLineRenderer.SetPositions(r_curvePoints.ToArray());
+        cheeseRemainLineRenderer.positionCount = c_curvePoints.Count;
+        cheeseRemainLineRenderer.SetPositions(c_curvePoints.ToArray());
+        stepLineRenderer.positionCount = s_curvePoints.Count;
+        stepLineRenderer.SetPositions(s_curvePoints.ToArray());
 
         EndEpisode();
         episodeCount++;
@@ -331,15 +340,15 @@ public class TurnBasedAgent : Agent
             SetReward(60);
         UnityEngine.Debug.Log("Current reward: " + rewardcheck);
         r_curvePoints.Add(new Vector3(count, rewardcheck, 10.0f));
-        c_curvePoints.Add(new Vector3(count, gm.PlayerState(0).Item1, 10.0f));
+        c_curvePoints.Add(new Vector3(count, cheeseCount, 10.0f));
         s_curvePoints.Add(new Vector3(count, step, 10.0f));
         count += xDistance;
         rewardLineRenderer.positionCount = r_curvePoints.Count;
         rewardLineRenderer.SetPositions(r_curvePoints.ToArray());
-        cheeseRemainLineRenderer.positionCount = r_curvePoints.Count;
-        cheeseRemainLineRenderer.SetPositions(r_curvePoints.ToArray());
-        stepLineRenderer.positionCount = r_curvePoints.Count;
-        stepLineRenderer.SetPositions(r_curvePoints.ToArray());
+        cheeseRemainLineRenderer.positionCount = c_curvePoints.Count;
+        cheeseRemainLineRenderer.SetPositions(c_curvePoints.ToArray());
+        stepLineRenderer.positionCount = s_curvePoints.Count;
+        stepLineRenderer.SetPositions(s_curvePoints.ToArray());
 
         EndEpisode();
         episodeCount++;
