@@ -487,6 +487,8 @@ public class GameManager : MonoBehaviour
 
     void AgentAction(int markerIndex)
     {
+        psmList[0].SetAnimator_Trigger("Action");
+        psmList[0].SetAnimator_Bool(anim, true);
         if (markerIndex > enemy.Count - 1)
         {
             dmg = 0;

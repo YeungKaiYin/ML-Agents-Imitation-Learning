@@ -5,6 +5,21 @@ using UnityEngine;
 public class CheeseFillGameObjectControllByAnimator : MonoBehaviour
 {
     public GameObject c1,c2,c3;
+    public Animator anim;
+
+    private void Start()
+    {
+        if (!anim)
+            anim = GetComponent<Animator>();
+    }
+
+    public void CheeseReset()
+    {
+        anim.SetTrigger("Reset");
+        AbleCheese();
+        AbleCheese2();
+        AbleCheese3();
+    }
 
     public void DisableCheese1()
     {

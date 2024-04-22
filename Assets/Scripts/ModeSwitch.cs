@@ -11,6 +11,8 @@ public class ModeSwitch : MonoBehaviour
     ColorBlock theColor;
     public LittleNightmare ln;
     bool human = true;
+    public Image sr_Middle, sr_Lower, sr_Upper;
+    public Sprite ms_Middle, ms_Lower, ms_Upper, t_Middle, t_Lower, t_Upper;
     void Start()
     {
         if(ln==null)
@@ -32,12 +34,14 @@ public class ModeSwitch : MonoBehaviour
             tmpText_HumanAI.SetText("AI");
             human = false;
             ln.HumanOrAI(false);
+            
         }
         else
         {
             tmpText_HumanAI.SetText("Human");
             human = true;
             ln.HumanOrAI(true);
+            
         }
         Debug.Log("HumanOrAI :" + (human?"Human":"AI"));
     }
@@ -82,6 +86,9 @@ public class ModeSwitch : MonoBehaviour
         stand.interactable = false;
 
         ln.ModeSwitch("Stand");
+        sr_Lower.sprite = ms_Lower;
+        sr_Middle.sprite = ms_Middle;
+        sr_Upper.sprite = ms_Upper;
     }
 
     public void Cheese()
@@ -90,5 +97,8 @@ public class ModeSwitch : MonoBehaviour
         cheese.interactable = false;
 
         ln.ModeSwitch("Cheese");
+        sr_Lower.sprite = t_Lower;
+        sr_Middle.sprite = t_Middle;
+        sr_Upper.sprite = t_Upper;
     }
 }

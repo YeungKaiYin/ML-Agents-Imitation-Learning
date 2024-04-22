@@ -2963,8 +2963,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 17253bf3ba952904584b94ce6e61536f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4475,6 +4475,7 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
+  cf: {fileID: 0}
 --- !u!114 &490694793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,7 +5000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!120 &540906142
@@ -6028,8 +6029,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 54531e7971c55c44f98f73a367762ae4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6691,7 +6692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!120 &757161972
@@ -7082,7 +7083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!120 &801447649
@@ -7417,6 +7418,7 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
+  cf: {fileID: 0}
 --- !u!114 &831310063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8161,8 +8163,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a44442edd557f5b4a87109e5b5db37ec, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9039,6 +9041,15 @@ MonoBehaviour:
   stand: {fileID: 316205335}
   cheese: {fileID: 959806063}
   ln: {fileID: 1655227686}
+  sr_Middle: {fileID: 1379325075}
+  sr_Lower: {fileID: 646649735}
+  sr_Upper: {fileID: 1055996463}
+  ms_Middle: {fileID: 21300000, guid: f443272acc5c92f4e8259a3b1f4c305a, type: 3}
+  ms_Lower: {fileID: 21300000, guid: 54531e7971c55c44f98f73a367762ae4, type: 3}
+  ms_Upper: {fileID: 21300000, guid: b31d72b743c891843a5057fc421b2f2f, type: 3}
+  t_Middle: {fileID: 21300000, guid: f06cf8b6cbfe39441970fd172979c270, type: 3}
+  t_Lower: {fileID: 21300000, guid: 8dd6b10f87b49b34bbf0cf1dce0ca468, type: 3}
+  t_Upper: {fileID: 21300000, guid: 8353441393d19a6438e108912fba8a72, type: 3}
 --- !u!1 &1038166902
 GameObject:
   m_ObjectHideFlags: 0
@@ -9317,8 +9328,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b31d72b743c891843a5057fc421b2f2f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10331,6 +10342,7 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 0}
+  cf: {fileID: 0}
 --- !u!114 &1180334368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11404,8 +11416,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f443272acc5c92f4e8259a3b1f4c305a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13132,6 +13144,7 @@ MonoBehaviour:
   tmpText: {fileID: 0}
   cheeseAnimator: {fileID: 0}
   effect_Spiral: {fileID: 495119332}
+  cf: {fileID: 0}
 --- !u!61 &1627523161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13318,6 +13331,7 @@ MonoBehaviour:
   tmpText: {fileID: 138266544}
   cheeseAnimator: {fileID: 2214213291813722841}
   effect_Spiral: {fileID: 1106088032}
+  cf: {fileID: 2214213291813722842}
 --- !u!50 &1655227688
 Rigidbody2D:
   serializedVersion: 4
@@ -15764,3 +15778,4 @@ MonoBehaviour:
   c1: {fileID: 409551599}
   c2: {fileID: 663477967}
   c3: {fileID: 1622308619}
+  anim: {fileID: 0}

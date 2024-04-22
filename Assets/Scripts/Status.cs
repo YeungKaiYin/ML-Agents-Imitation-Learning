@@ -35,6 +35,7 @@ public class Status : MonoBehaviour
     public TextMeshProUGUI tmpText;
     public Animator cheeseAnimator;
     public GameObject effect_Spiral;
+    public CheeseFillGameObjectControllByAnimator cf;
 
     private void Awake()
     {
@@ -71,7 +72,11 @@ public class Status : MonoBehaviour
         IsItDying(false);
         IsItGrounded(true);
         if (gameObject.tag == "Player")
+        {
             CheeseGet();
+            cf.CheeseReset();
+        }
+            
         if (gameObject.tag == "Enemy1")
             GetComponent<Enemy01>().OrderCountReset();
         //gm.GameReset();

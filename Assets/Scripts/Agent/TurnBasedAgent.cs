@@ -59,6 +59,7 @@ public class TurnBasedAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Reset the game state at the beginning of each episode
+        ln.ModeSwitch("Stand");
         cheeseCount = 3;
         step = 0;
         if (aac == null)
@@ -133,28 +134,34 @@ public class TurnBasedAgent : Agent
                 case 0:
                     // Attack
                     // Implement attack logic here
+                    ln.ModeSwitch("Stand");
                     ln.AgentBladeAttack("Middle",0);
                     UnityEngine.Debug.Log("agent action: 0");
                     break;
                 case 1:
+                    ln.ModeSwitch("Stand");
                     ln.AgentBladeAttack("Lower", 0);
                     UnityEngine.Debug.Log("agent action: 1");
                     break;
                 case 2:
+                    ln.ModeSwitch("Stand");
                     ln.AgentBladeAttack("Upper", 0);
                     UnityEngine.Debug.Log("agent action: 2");
                     break;
                 case 3:
+                    ln.ModeSwitch("Cheese");
                     ln.AgentBladeAttack("Cheese_CatBall", 0);
                     UnityEngine.Debug.Log("agent action: 3");
                     cheeseCount--;
                     break;
                 case 4:
+                    ln.ModeSwitch("Cheese");
                     ln.AgentBladeAttack("Cheese_CatTeaserWand", 0);
                     UnityEngine.Debug.Log("agent action: 4");
                     cheeseCount--;
                     break;
                 case 5:
+                    ln.ModeSwitch("Cheese");
                     ln.AgentBladeAttack("Cheese_CatKibble", 0);
                     UnityEngine.Debug.Log("agent action: 5");
                     cheeseCount--;
