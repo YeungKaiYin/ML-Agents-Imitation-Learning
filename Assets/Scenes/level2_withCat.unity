@@ -2249,7 +2249,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 0f7c7908597ed8641adc3dbd2ddee804, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Level_2
@@ -2318,6 +2318,7 @@ MonoBehaviour:
   aac: {fileID: 700724067}
   gm: {fileID: 1817984169}
   cs: {fileID: 536145605}
+  s1: {fileID: 1420117635}
   CheeseTransform: {fileID: 406411688}
   CatTransform1: {fileID: 1584806335}
   CatTransform2: {fileID: 911567069}

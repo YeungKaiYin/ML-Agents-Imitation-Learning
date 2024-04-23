@@ -7,14 +7,23 @@ using Unity.MLAgents.Sensors;
 using System.IO;
 using System;
 using Unity.VisualScripting;
+using Unity.Collections.LowLevel.Unsafe;
 
-
-
-
-public class Agent_Level1 : Agent
-{    private Rigidbody2D agentRb;
+public class Agent_Level_2_withoutCat : Agent
+{
     public static bool getCheese = false;
-    bool isPaused=false;
+
+    [SerializeField] private Transform CheeseTransform;
+    [SerializeField] private Transform GoalTransform;
+
+   private Transform WallTransform;
+
+    string fileName = "";
+
+
+    private Rigidbody2D agentRb;
+
+    public Sensor s2;
     int total_move;
     int count_episode;
     int count_up;
@@ -27,51 +36,37 @@ public class Agent_Level1 : Agent
     int count_not_move;
     Boolean hit_wall;
     int count_goalWithOutCheese;
-    string fileName = "";
-    Vector2 contactPoint;
     float distanceToCheese;
     float distanceToGoal;
-    public Sensor s1;
-
-    [SerializeField] private Transform CheeseTransform;
-    [SerializeField] private Transform GoalTransform;
-    private Transform wallTransform;
     public override void Initialize()
     {
+
         agentRb = GetComponent<Rigidbody2D>();
 
         count_episode = 0;
 
-        fileName = Application.dataPath + "/Level1_ModelTrain01.txt";
+        fileName = Application.dataPath + "/Level2_ModelTest.txt";
 
-    }
-
-    public void Log(string msg, string stackTrace, LogType type)
-    {
-        TextWriter tw = new StreamWriter(fileName, true);
-
-        tw.WriteLine(msg);
-
-        tw.Close();
     }
 
     public override void OnEpisodeBegin()
     {
+        agentRb.transform.position = new Vector2(-3.4748f, 3.515f);
 
-        agentRb.transform.position = new Vector2(-3.439f, 3.52f);
+
 
         total_move = 0;
         count_up = 0;
         count_down = 0;
         count_right = 0;
         count_left = 0;
-        count_not_move = 0;
-        
         count_episode += 1;
-
+        count_not_move = 0;
         getCheese = false;
+        hit_wall = false;
+        count_goalWithOutCheese = 0;
+        
         CheeseTransform.gameObject.SetActive(true);
-
 
         Application.logMessageReceived += Log;
 
@@ -79,22 +74,19 @@ public class Agent_Level1 : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(agentRb.transform.position);
-        
-        sensor.AddObservation(getCheese);
+        sensor.AddObservation(agentRb.position);
 
         if(getCheese == false)
-        {   
+        {
+            
             sensor.AddObservation(CheeseTransform.transform.position);
             sensor.AddObservation(distanceToCheese);
 
         }else{
+            sensor.AddObservation(getCheese == true);
             sensor.AddObservation(GoalTransform.transform.position);
             sensor.AddObservation(distanceToGoal);
         }
-        sensor.AddObservation(gameObject.transform.position);
-        sensor.AddObservation(s1.GetContactPoint());
-
         
         if(hit_wall == true)
         {
@@ -104,14 +96,16 @@ public class Agent_Level1 : Agent
         {
             sensor.AddObservation(0f);
         }
+        sensor.AddObservation(gameObject.transform.position);
+        sensor.AddObservation(s2.GetContactPoint());
+        
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
         int movement = actions.DiscreteActions[0];
-        
 
-        float speed = 1f;
+        float speed = 0.6f;
 
         if (movement == 0)
         {
@@ -122,19 +116,17 @@ public class Agent_Level1 : Agent
         }
         if (movement == 1)
         {
-            agentRb.velocity += new Vector2(0, -1 * speed);
 
+            agentRb.velocity += new Vector2(0, -1 * speed);
             count_down += 1;
             total_move += 1;
-            
         }
         if (movement == 2)
-        {
+        {   
 
             agentRb.velocity += new Vector2(-1 * speed, 0);
             count_left += 1;
             total_move += 1;
- 
         }
         if (movement == 3)
         {
@@ -142,34 +134,36 @@ public class Agent_Level1 : Agent
             agentRb.velocity += new Vector2(1 * speed, 0);
             count_right += 1;
             total_move += 1;
- 
         }
 
-        
-        AddReward(-0.05f);
-    
         distanceToCheese = Vector2.Distance(agentRb.transform.position, CheeseTransform.position);
         distanceToGoal = Vector2.Distance(agentRb.transform.position, GoalTransform.position);
         
         if(getCheese == false){
-            if(distanceToCheese < 4.5f)
+
+            if(distanceToCheese < 4f)
             {
-                AddReward(1f);
+                SetReward(1f);
             }
+   
         }
-        else{
-            if(distanceToGoal < 4.5f)
+        if(getCheese == true){
+            
+
+            if(distanceToGoal < 4f)
             {
-                AddReward(1f);
+                SetReward(1f);
             }
-        
         }
 
+
     }
+
     public override void Heuristic(in ActionBuffers actionsOut)
     {
 
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -192,12 +186,15 @@ public class Agent_Level1 : Agent
             discreteActions[0] = 4;
         }
 
+
+
+
     }
+    Vector2 contactPoint;
     public void ReceiveContactPoint(Vector2 pos)
     {
         contactPoint = pos;
     }
-
     public void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -210,11 +207,13 @@ public class Agent_Level1 : Agent
         }
 
 
+
+
     }
 
     public void OnCollisionEnter2D(Collision2D other)
-    {   
-        if(other.gameObject.tag == "cat1" || other.gameObject.tag == "cat2" || other.gameObject.tag == "cat3" || other.gameObject.tag == "cat4" || other.gameObject.tag == "cat5")
+    {
+        if (other.gameObject.tag == "cat1")
         {
             SetReward(-100f);
             getReward = GetCumulativeReward();
@@ -222,22 +221,25 @@ public class Agent_Level1 : Agent
             Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
             Application.logMessageReceived -= Log;
             EndEpisode();
-        }
 
+
+
+        }
         if (other.gameObject.tag == "Goal" && getCheese == true)
-        {
-            SetReward(1000f);
+        {   
+            SetReward(100f);
             getReward = GetCumulativeReward();
             Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
             Application.logMessageReceived -= Log;
             EndEpisode();
         }
-        if (other.gameObject.tag == "Goal" && getCheese == false)
+        else if (other.gameObject.tag == "Goal" && getCheese == false)
         {
-            SetReward(0f);
+            SetReward(0);
             count_goalWithOutCheese += 1;
-            
         }
+
+
 
     }
     public void OnCollisionStay2D(Collision2D collision)
@@ -245,10 +247,18 @@ public class Agent_Level1 : Agent
         if(collision.gameObject.tag=="Wall")
         {   
             hit_wall = true;
-            wallTransform = collision.gameObject.transform;
+            WallTransform = collision.gameObject.transform;
             AddReward(-0.05f);
             //Debug.Log(collision.contacts[0].point);
         }
     }
-}
 
+    public void Log(string msg, string stackTrace, LogType type)
+    {
+        TextWriter tw = new StreamWriter(fileName, true);
+
+        tw.WriteLine(msg);
+
+        tw.Close();
+    }
+}
