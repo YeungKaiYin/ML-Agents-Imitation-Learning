@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class VideoController : MonoBehaviour
 {
-    public GameObject storyObject, startObject, learnObject;
+    public GameObject storyObject, startObject, learnObject, learnObject2;
     public VideoPlayer videoPlayer1;
     public VideoPlayer videoPlayer2;
 

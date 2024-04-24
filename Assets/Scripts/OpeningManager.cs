@@ -18,8 +18,13 @@ public class OpeningManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (v_story.isPlaying == false)
-            Debug.Log("video stop");
+        //if (v_story.isPlaying == false)
+        //    Debug.Log("video stop");
+    }
+
+    public void LoadOpenScene()
+    {
+        SceneManager.LoadScene("Opening", LoadSceneMode.Additive);
     }
 
     public void LoadAIScene1()
@@ -39,7 +44,7 @@ public class OpeningManager : MonoBehaviour
 
     public void LoadAIScene3()
     {
-        SceneManager.LoadScene("level_3", LoadSceneMode.Additive);
+        SceneManager.LoadScene("level3", LoadSceneMode.Additive);
     }
 
     public void ActiveOpeningButton()

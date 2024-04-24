@@ -44,7 +44,8 @@ public class Agent_Level3 : Agent
 
 
     bool catStun = false;
-
+    bool human = true;
+    public OpeningManager om;
 
     public override void Initialize()
     {
@@ -57,10 +58,10 @@ public class Agent_Level3 : Agent
 
     }
 
-
-
-
-
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
+    }
 
     public void Log(string msg, string stackTrace, LogType type)
     {
@@ -147,34 +148,38 @@ public class Agent_Level3 : Agent
 
         float speed = 1f;
 
-        if (movement == 0)
+        if (!human)
         {
+            if (movement == 0)
+            {
 
-            agentRb.velocity += new Vector2(0, 1 * speed);
-            count_up += 1;
-            total_move += 1;
-        }
-        if (movement == 1)
-        {
-            agentRb.velocity += new Vector2(0, -1 * speed);
+                agentRb.velocity += new Vector2(0, 1 * speed);
+                count_up += 1;
+                total_move += 1;
+            }
+            if (movement == 1)
+            {
+                agentRb.velocity += new Vector2(0, -1 * speed);
 
-            count_down += 1;
-            total_move += 1;
-        }
-        if (movement == 2)
-        {
+                count_down += 1;
+                total_move += 1;
+            }
+            if (movement == 2)
+            {
 
-            agentRb.velocity += new Vector2(-1 * speed, 0);
-            count_left += 1;
-            total_move += 1;
-        }
-        if (movement == 3)
-        {
+                agentRb.velocity += new Vector2(-1 * speed, 0);
+                count_left += 1;
+                total_move += 1;
+            }
+            if (movement == 3)
+            {
 
-            agentRb.velocity += new Vector2(1 * speed, 0);
-            count_right += 1;
-            total_move += 1;
+                agentRb.velocity += new Vector2(1 * speed, 0);
+                count_right += 1;
+                total_move += 1;
+            }
         }
+        
 
         SetReward(-0.05f);
         
@@ -296,6 +301,7 @@ public class Agent_Level3 : Agent
             Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
             Application.logMessageReceived -= Log;
             EndEpisode();
+            om.LoadOpenScene();
         }
         else if (other.gameObject.tag == "Goal" && getCheese == false)
         {

@@ -13,10 +13,14 @@ public class ModeSwitch : MonoBehaviour
     bool human = true;
     public Image sr_Middle, sr_Lower, sr_Upper;
     public Sprite ms_Middle, ms_Lower, ms_Upper, t_Middle, t_Lower, t_Upper;
+    public Agent_Level1 al1;
+    public Agent_Level2 al2;
+    public Agent_Level3 al3;
     void Start()
     {
-        if(ln==null)
-        ln = GameObject.FindGameObjectWithTag("Player").GetComponent<LittleNightmare>();
+        //if(ln==null)
+        //ln = GameObject.FindGameObjectWithTag("Player").GetComponent<LittleNightmare>();
+        if(ln != null)
         ButtonActive();
         //theColor = upper.colors;
         //Middle();
@@ -44,6 +48,35 @@ public class ModeSwitch : MonoBehaviour
             
         }
         Debug.Log("HumanOrAI :" + (human?"Human":"AI"));
+    }
+
+    public void Maze_HumanOrAI()
+    {
+        if (human)
+        {
+            tmpText_HumanAI.SetText("AI");
+            human = false;
+            if(al1)
+                al1.HumanOrAI(false);
+            else if(al2)
+                al2.HumanOrAI(false);
+            else if (al3)
+                al3.HumanOrAI(false);
+
+        }
+        else
+        {
+            tmpText_HumanAI.SetText("Human");
+            human = true;
+            if(al1)
+                al1.HumanOrAI(true);
+            else if(al2)
+                al2.HumanOrAI(true);
+            else if (al3)
+                al3.HumanOrAI(true);
+
+        }
+        Debug.Log("HumanOrAI :" + (human ? "Human" : "AI"));
     }
 
     public void ButtonActive()

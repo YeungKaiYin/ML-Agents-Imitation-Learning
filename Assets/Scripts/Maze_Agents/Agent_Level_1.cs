@@ -93,7 +93,7 @@ public class Agent_Level_1 : Agent
             total_move += 1;
         }
         if (movement == 2)
-        {   
+        {
 
             agentRb.velocity += new Vector2(-1 * speed, 0);
             count_up += 1;
@@ -112,6 +112,7 @@ public class Agent_Level_1 : Agent
             agentRb.velocity = new Vector2(0, 0);
 
         }
+
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

@@ -485,8 +485,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void AgentAction(int markerIndex)
+    IEnumerator AgentAction(int markerIndex)
     {
+        yield return new WaitForSeconds(1f);
         psmList[0].SetAnimator_Trigger("Action");
         psmList[0].SetAnimator_Bool(anim, true);
         if (markerIndex > enemy.Count - 1)
@@ -494,7 +495,7 @@ public class GameManager : MonoBehaviour
             dmg = 0;
             t_dmg = 0;
             Invoke("GM_AgentTurnEnd", 1f);
-            return;
+            yield return null;
         }
 
         if (psmList[0].IsItGrounded())
@@ -1087,7 +1088,7 @@ public class GameManager : MonoBehaviour
         {
             jumpTf = true;
         }
-        AgentAction(target);
+        StartCoroutine(AgentAction(target));
     }
 
     public void ActionMark(float dmg, float t_dmg, int area, bool knockup, bool jump, String mode)

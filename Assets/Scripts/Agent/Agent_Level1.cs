@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 using System.IO;
 using System;
 using Unity.VisualScripting;
-
+using UnityEngine.SceneManagement;
 
 
 
@@ -36,6 +36,9 @@ public class Agent_Level1 : Agent
     [SerializeField] private Transform CheeseTransform;
     [SerializeField] private Transform GoalTransform;
     private Transform wallTransform;
+    bool human = true;
+    public OpeningManager om;
+
     public override void Initialize()
     {
         agentRb = GetComponent<Rigidbody2D>();
@@ -44,6 +47,11 @@ public class Agent_Level1 : Agent
 
         fileName = Application.dataPath + "/Level1_ModelTrain01.txt";
 
+    }
+
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
     }
 
     public void Log(string msg, string stackTrace, LogType type)
@@ -113,38 +121,40 @@ public class Agent_Level1 : Agent
 
         float speed = 1f;
 
-        if (movement == 0)
+        if (!human)
         {
+            if (movement == 0)
+            {
 
-            agentRb.velocity += new Vector2(0, 1 * speed);
-            count_up += 1;
-            total_move += 1;
+                agentRb.velocity += new Vector2(0, 1 * speed);
+                count_up += 1;
+                total_move += 1;
+            }
+            if (movement == 1)
+            {
+                agentRb.velocity += new Vector2(0, -1 * speed);
+
+                count_down += 1;
+                total_move += 1;
+
+            }
+            if (movement == 2)
+            {
+
+                agentRb.velocity += new Vector2(-1 * speed, 0);
+                count_left += 1;
+                total_move += 1;
+
+            }
+            if (movement == 3)
+            {
+
+                agentRb.velocity += new Vector2(1 * speed, 0);
+                count_right += 1;
+                total_move += 1;
+
+            }
         }
-        if (movement == 1)
-        {
-            agentRb.velocity += new Vector2(0, -1 * speed);
-
-            count_down += 1;
-            total_move += 1;
-            
-        }
-        if (movement == 2)
-        {
-
-            agentRb.velocity += new Vector2(-1 * speed, 0);
-            count_left += 1;
-            total_move += 1;
- 
-        }
-        if (movement == 3)
-        {
-
-            agentRb.velocity += new Vector2(1 * speed, 0);
-            count_right += 1;
-            total_move += 1;
- 
-        }
-
         
         AddReward(-0.05f);
     
@@ -231,6 +241,9 @@ public class Agent_Level1 : Agent
             Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
             Application.logMessageReceived -= Log;
             EndEpisode();
+
+            if (human)
+                om.LoadAIScene2WithCat();
         }
         if (other.gameObject.tag == "Goal" && getCheese == false)
         {
