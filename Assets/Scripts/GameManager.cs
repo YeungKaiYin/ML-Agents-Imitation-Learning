@@ -485,9 +485,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator AgentAction(int markerIndex)
+    public void AgentAction(int markerIndex)
     {
-        yield return new WaitForSeconds(1f);
         psmList[0].SetAnimator_Trigger("Action");
         psmList[0].SetAnimator_Bool(anim, true);
         if (markerIndex > enemy.Count - 1)
@@ -495,7 +494,7 @@ public class GameManager : MonoBehaviour
             dmg = 0;
             t_dmg = 0;
             Invoke("GM_AgentTurnEnd", 1f);
-            yield return null;
+            return;
         }
 
         if (psmList[0].IsItGrounded())
@@ -669,13 +668,13 @@ public class GameManager : MonoBehaviour
             enemy[lastMark].GetComponent<Transform>().position = battlePosRightUp.transform.position;
             esList[lastMark].IsItGrounded(false);
         }
-        if (!psmList[0].IsItGrounded())
+        if (jumpTf)
         {
             player[0].GetComponent<Transform>().position = battlePosLeftUp.transform.position;
         }
 
         //knock down and fall
-        if (!knockup && !jumpTf && !psmList[0].IsItGrounded()&&mode=="Upper")
+        if (mode=="Upper")
         {
             enemy[lastMark].GetComponent<Transform>().position = battlePosRight.transform.position;
             esList[lastMark].IsItGrounded(true);
@@ -1088,7 +1087,13 @@ public class GameManager : MonoBehaviour
         {
             jumpTf = true;
         }
-        StartCoroutine(AgentAction(target));
+        StartCoroutine(agentActionContinue(target));
+    }
+
+    IEnumerator agentActionContinue(int code)
+    {
+        yield return new WaitForSeconds(1f);
+        AgentAction(code);
     }
 
     public void ActionMark(float dmg, float t_dmg, int area, bool knockup, bool jump, String mode)

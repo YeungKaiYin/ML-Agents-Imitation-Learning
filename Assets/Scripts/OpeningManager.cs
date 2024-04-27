@@ -9,17 +9,38 @@ public class OpeningManager : MonoBehaviour
 {
     public string s1;
     public VideoPlayer v_story,v_maze,v_battle,v_home;
-    public GameObject b_story, b_start, b_learn;
+    public GameObject b_story, b_start, b_learn,b_return;
 
     private void Start()
     {
         Invoke("ActiveOpeningButton", 3f);
+        b_story.SetActive(false);
+        b_learn.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         //if (v_story.isPlaying == false)
         //    Debug.Log("video stop");
+    }
+
+    public void B_Story()
+    {
+        b_story.SetActive(true);
+        b_return.SetActive(true);
+    }
+
+    public void B_Learn()
+    {
+        b_learn.SetActive(true);
+        b_return.SetActive(true);
+    }
+
+    public void B_Return()
+    {
+        b_return.SetActive(false);
+        b_story.SetActive(false);
+        b_learn.SetActive(false); 
     }
 
     public void LoadOpenScene()

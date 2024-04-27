@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class VideoController : MonoBehaviour
 {
-    public GameObject storyObject, startObject, learnObject, learnObject2;
+    public GameObject storyBattleObject, storyMazeObject, startObject, learnBattleObject, learnMazeObject,story,learn;
     public VideoPlayer videoPlayer1;
     public VideoPlayer videoPlayer2;
 
@@ -18,13 +18,18 @@ public class VideoController : MonoBehaviour
     void OnVideo1End(VideoPlayer vp)
     {
         videoPlayer1.loopPointReached -= OnVideo1End;
-        storyObject.SetActive(false);
+        storyMazeObject.SetActive(false);
         videoPlayer2.Play();
     }
 
-    public void StoryActive()
+    public void StoryBattleActive()
     {
-        storyObject.SetActive(true);
+        storyBattleObject.SetActive(true);
+    }
+
+    public void StoryMazeActive()
+    {
+        storyMazeObject.SetActive(true);
     }
 
     public void StartActive()
@@ -32,25 +37,35 @@ public class VideoController : MonoBehaviour
         startObject.SetActive(true);
     }
 
-    public void LearnActive()
+    public void LearnBattleActive()
     {
-        learnObject.SetActive(true);
+        learnBattleObject.SetActive(true);
     }
 
-    public void StoryInactive()
+    public void LearnMazeActive()
     {
-        storyObject.SetActive(false);
+        learnMazeObject.SetActive(true);
     }
+
+    public void Return()
+    {
+        
+    }
+
+    //public void StoryInactive()
+    //{
+    //    storyObject.SetActive(false);
+    //}
 
     public void StartInactive()
     {
         startObject.SetActive(false);
     }
 
-    public void LearnInactive()
-    {
-        learnObject.SetActive(false);
-    }
+    //public void LearnInactive()
+    //{
+    //    learnObject.SetActive(false);
+    //}
 
     public void ObjectInactive(GameObject go)
     {
