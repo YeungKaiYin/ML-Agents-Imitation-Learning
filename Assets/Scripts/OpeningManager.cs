@@ -14,7 +14,9 @@ public class OpeningManager : MonoBehaviour
     private void Start()
     {
         Invoke("ActiveOpeningButton", 3f);
+        if(b_story)
         b_story.SetActive(false);
+        if(b_learn)
         b_learn.SetActive(false);
     }
 

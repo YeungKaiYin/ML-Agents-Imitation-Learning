@@ -5,6 +5,8 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using System.IO;
+using UnityEngine.SceneManagement;
+
 public class Agent_Level2 : Agent
 {
     bool isPaused=false;
@@ -37,8 +39,9 @@ public class Agent_Level2 : Agent
     int count_getCheese;
     float getReward;
     int count_coll_cat;
+    int score;
+    int timetransform;
     bool human = true;
-    public OpeningManager om;
 
 
     public override void Initialize()
@@ -53,12 +56,6 @@ public class Agent_Level2 : Agent
         fileName = Application.dataPath + "/Logfile.txt";
 
     }
-
-    public void HumanOrAI(bool tf)
-    {
-        human = tf;
-    }
-
     public void Log(string msg, string stackTrace, LogType type)
     {
         TextWriter tw = new StreamWriter(fileName, true);
@@ -108,12 +105,18 @@ public class Agent_Level2 : Agent
         sensor.AddObservation(getCheese);
 
         sensor.AddObservation(gameObject.transform.position);
+
         sensor.AddObservation(s1.GetContactPoint());
     }
 
     public void IsPaused(bool tf)
     {
         isPaused = tf;
+    }
+
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -128,44 +131,40 @@ public class Agent_Level2 : Agent
 
         float speed = 0.6f;
 
-        if (!human)
+        if (movement == 0)
         {
-            if (movement == 0)
-            {
 
-                agentRb.velocity += new Vector2(0, 1 * speed);
-                count_up += 1;
-                total_move += 1;
-            }
-            if (movement == 1)
-            {
-                agentRb.velocity += new Vector2(0, -1 * speed);
-
-                count_down += 1;
-                total_move += 1;
-            }
-            if (movement == 2)
-            {
-
-                agentRb.velocity += new Vector2(-1 * speed, 0);
-                count_left += 1;
-                total_move += 1;
-            }
-            if (movement == 3)
-            {
-
-                agentRb.velocity += new Vector2(1 * speed, 0);
-                count_right += 1;
-                total_move += 1;
-            }
-            if (movement == 4)
-            {
-
-                agentRb.velocity = new Vector2(0, 0);
-
-            }
+            agentRb.velocity += new Vector2(0, 1 * speed);
+            count_up += 1;
+            total_move += 1;
         }
-        
+        if (movement == 1)
+        {
+            agentRb.velocity += new Vector2(0, -1 * speed);
+
+            count_down += 1;
+            total_move += 1;
+        }
+        if (movement == 2)
+        {
+
+            agentRb.velocity += new Vector2(-1 * speed, 0);
+            count_left += 1;
+            total_move += 1;
+        }
+        if (movement == 3)
+        {
+
+            agentRb.velocity += new Vector2(1 * speed, 0);
+            count_right += 1;
+            total_move += 1;
+        }
+        if (movement == 4)
+        {
+
+            agentRb.velocity = new Vector2(0, 0);
+
+        }
     }
 
 
@@ -274,7 +273,8 @@ public class Agent_Level2 : Agent
             Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat);
             Application.logMessageReceived -= Log;
             EndEpisode();
-            om.LoadAIScene3();
+            if (human)
+                SceneManager.LoadScene("level3");
         }
         else if (other.gameObject.tag == "Goal" && getCheese == false)
         {

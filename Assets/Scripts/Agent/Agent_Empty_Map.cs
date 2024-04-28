@@ -7,29 +7,34 @@ using Unity.MLAgents.Sensors;
 using System.IO;
 using System;
 using Unity.VisualScripting;
-
+using System.Security.Cryptography;
+using System.IO.Abstractions;
+using System.Linq;
 public class Agent_Empty_Map : Agent
 {
-    private Rigidbody2D agentRb;
+    public Rigidbody2D agentRb;
     public static bool getCheese = false;
     bool isPaused=false;
-    int total_move;
     int count_episode;
-    int count_up;
-    int count_down;
-    int count_right;
-    int count_left;
     int count_getCheese;
     float getReward;
     int count_coll_cat;
-    int count_not_move;
-    Boolean hit_wall;
+    int countbBattleWin;
+    int countBattleLose;
     int count_goalWithOutCheese;
     string fileName = "";
     Vector2 contactPoint;
     float distanceToCheese;
     float distanceToGoal;
+    int count_achive_goal;
     public Sensor s3;
+    float stepPenalty;
+    float score;
+
+    float getStepCount;
+
+    float getTotalStepCount;
+    
 
     [SerializeField] private Transform CheeseTransform;
     [SerializeField]private Transform CatTransform;
@@ -38,17 +43,23 @@ public class Agent_Empty_Map : Agent
     [SerializeField] private Transform CatTransform3;
     [SerializeField] private Transform CatTransform4;
     [SerializeField] private Transform GoalTransform;
-    
-    private Transform wallTransform;
-
+    [SerializeField]private Transform wallTransform;
+    private static System.Random randomNumber;
+    public AgentActiveContoller aac;
 
     public override void Initialize()
     {
         agentRb = GetComponent<Rigidbody2D>();
 
         count_episode = 0;
+        count_achive_goal = 0;
+        //fileName = Application.dataPath + "/Level2_Test_T016.txt";
+        fileName = Application.dataPath + "/Level2_Model_PerformanceC.txt";
 
-        fileName = Application.dataPath + "/Level2_WithCat_ModelTest01.txt";
+
+
+        
+
 
     }
     public void Log(string msg, string stackTrace, LogType type)
@@ -61,19 +72,16 @@ public class Agent_Empty_Map : Agent
     }
     public override void OnEpisodeBegin()
     {
-        agentRb.transform.position = new Vector2(-3.475f, 2.627f);
+        agentRb.transform.position = new Vector2(-3.465f, 2.632f);
 
-        total_move = 0;
-        count_up = 0;
-        count_down = 0;
-        count_right = 0;
-        count_left = 0;
-        count_not_move = 0;
-        
+
         count_episode += 1;
 
         getCheese = false;
+        isPaused = false;
         CheeseTransform.gameObject.SetActive(true);
+
+        isPaused = false;
 
 
         Application.logMessageReceived += Log;
@@ -84,17 +92,20 @@ public class Agent_Empty_Map : Agent
     {
         sensor.AddObservation(agentRb.transform.position);
         
-        sensor.AddObservation(getCheese);
-
         if(getCheese == false)
-        {   
+        {
+            
             sensor.AddObservation(CheeseTransform.transform.position);
+
             sensor.AddObservation(distanceToCheese);
 
         }else{
+            
             sensor.AddObservation(GoalTransform.transform.position);
+
             sensor.AddObservation(distanceToGoal);
         }
+        sensor.AddObservation(gameObject.transform.position);
         
         sensor.AddObservation(CatTransform.transform.position);
 
@@ -109,22 +120,35 @@ public class Agent_Empty_Map : Agent
         sensor.AddObservation(gameObject.transform.position);
         
         sensor.AddObservation(s3.GetContactPoint());
+        
+        sensor.AddObservation(wallTransform);
 
-        if(hit_wall == true)
-        {
-            sensor.AddObservation(1f);
-        }
-        else
-        {
-            sensor.AddObservation(0f);
-        }
+        
+
+
     }
 
 
+
+    public void IsPaused(bool tf)
+    {
+        isPaused = tf;
+    }
+
     public override void OnActionReceived(ActionBuffers actions)
     {
-        int movement = actions.DiscreteActions[0];
+
         
+        if (isPaused)
+        {
+            // Agent is paused, do not execute actions
+            return;
+        }
+        
+
+
+        int movement = actions.DiscreteActions[0];
+
 
         float speed = 1f;
 
@@ -132,56 +156,62 @@ public class Agent_Empty_Map : Agent
         {
 
             agentRb.velocity += new Vector2(0, 1 * speed);
-            count_up += 1;
-            total_move += 1;
-        }
-        if (movement == 1)
+
+ 
+
+        }else if (movement == 1)
         {
             agentRb.velocity += new Vector2(0, -1 * speed);
+    
 
-            count_down += 1;
-            total_move += 1;
             
-        }
-        if (movement == 2)
+        }else if (movement == 2)
         {
 
             agentRb.velocity += new Vector2(-1 * speed, 0);
-            count_left += 1;
-            total_move += 1;
- 
+      
+
         }
-        if (movement == 3)
+        else if (movement == 3)
         {
 
             agentRb.velocity += new Vector2(1 * speed, 0);
-            count_right += 1;
-            total_move += 1;
- 
+      
+
         }
 
-        
-        AddReward(-0.05f);
-    
-        distanceToCheese = Vector2.Distance(agentRb.transform.position, CheeseTransform.position);
-        distanceToGoal = Vector2.Distance(agentRb.transform.position, GoalTransform.position);
-        
-        if(getCheese == false){
-            if(distanceToCheese < 4.5f)
-            {
-                AddReward(1f);
-            }
+        distanceToGoal = Vector2.Distance(agentRb.position, GoalTransform.position);
+        distanceToCheese = Vector2.Distance(agentRb.position, CheeseTransform.position);
+
+
+        if(StepCount >= 500){
+
+
+                getStepCount= 500;
+                AddReward(-100f);
+                getReward = GetCumulativeReward();
+                Debug.Log( "Episode = " + count_episode + " Number of steps = " + getStepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
+                Application.logMessageReceived -= Log;
+                EndEpisode();
+                
+
+
+        }else{
+            score = -0.5f;
+            score += score * 0.1f;
+            AddReward(score);
         }
-        else{
-            if(distanceToGoal < 4.5f)
-            {
+
+
+        if(getCheese){
+
+            if(distanceToGoal < 4f){
                 AddReward(1f);
             }
         
         }
 
     }
-
     public override void Heuristic(in ActionBuffers actionsOut)
     {
 
@@ -210,6 +240,27 @@ public class Agent_Empty_Map : Agent
 
     }
 
+    void CatStun(bool tf)
+    {
+        if (tf)
+        {
+            StartCoroutine(Stunning());
+            foreach (Collider2D c in GetComponents<Collider2D>())
+            {
+                c.enabled = false;
+            }
+        }
+
+    }
+    IEnumerator Stunning()
+    {
+        yield return new WaitForSeconds(3);
+        CatStun(false);
+        foreach (Collider2D c in GetComponents<Collider2D>())
+        {
+            c.enabled = true;
+        }
+    }
 
     public void ReceiveContactPoint(Vector2 pos)
     {
@@ -222,7 +273,7 @@ public class Agent_Empty_Map : Agent
         {
             getCheese = true;
             other.gameObject.SetActive(false);
-            SetReward(500);
+            AddReward(300);
             count_getCheese += 1;
         }
 
@@ -231,42 +282,76 @@ public class Agent_Empty_Map : Agent
 
     public void OnCollisionEnter2D(Collision2D other)
     {   
-        if(other.gameObject.tag == "cat1" || other.gameObject.tag == "cat2" || other.gameObject.tag == "cat3" || other.gameObject.tag == "cat4" || other.gameObject.tag == "cat5")
-        {
-            SetReward(-100f);
-            getReward = GetCumulativeReward();
-            count_coll_cat += 1;
-            Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
-            Application.logMessageReceived -= Log;
-            EndEpisode();
+            if(other.gameObject.tag == "cat1" || other.gameObject.tag == "cat2" || other.gameObject.tag == "cat3" || other.gameObject.tag == "cat4" || other.gameObject.tag == "cat5")
+            {
+            
+                if(getCheese == false)
+                { 
+                    count_coll_cat += 1;
+                    AddReward(-100f);
+                    getReward = GetCumulativeReward();
+                    Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
+                    Application.logMessageReceived -= Log;
+                    EndEpisode();
+            
+                }
+                else
+                {
+                    aac.PauseMazeAgent();
+                    aac.ResumeBattleAgent();
+                    randomNumber = new System.Random();
+                    double margin = 89.0/100.0;
+                    if(randomNumber.NextDouble() < margin)
+                {   
+                
+                AddReward(5f);
+                countbBattleWin += 1;
+                }
+                else
+                {
+     
+                    AddReward(-100f);
+                    countBattleLose += 1;
+                    getReward = GetCumulativeReward();
+                    Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
+                    Application.logMessageReceived -= Log;
+                    EndEpisode();
+
+                }
+            }
         }
 
+        
+
+
         if (other.gameObject.tag == "Goal" && getCheese == true)
-        {
-            SetReward(1000f);
+        {   
+            count_achive_goal += 1;
+            AddReward(1000f);
             getReward = GetCumulativeReward();
-            Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
+            Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
             Application.logMessageReceived -= Log;
             EndEpisode();
-        }
-        if (other.gameObject.tag == "Goal" && getCheese == false)
-        {
-            SetReward(0f);
-            count_goalWithOutCheese += 1;
             
+        }else if(other.gameObject.tag == "Goal" && getCheese == false){
+
+            AddReward(10f);
+            count_goalWithOutCheese += 1;
         }
+
+            
+        
 
     }
     public void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag=="Wall")
         {   
-            hit_wall = true;
+
             wallTransform = collision.gameObject.transform;
-            AddReward(-0.05f);
             //Debug.Log(collision.contacts[0].point);
         }
     }
 
-    
+
 }

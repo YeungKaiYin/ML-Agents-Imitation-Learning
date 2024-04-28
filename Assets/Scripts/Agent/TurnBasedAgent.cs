@@ -296,7 +296,7 @@ public class TurnBasedAgent : Agent
     public void AgentVictory()
     {
         winCount++;
-        UnityEngine.Debug.Log("Win :"+winCount+"\n"+ "Lose :" + loseCount+"\nWin Rate :"+(winCount/loseCount));
+        //UnityEngine.Debug.Log("Win :"+winCount+"\n"+ "Lose :" + loseCount+"\nWin Rate :"+(winCount/loseCount));
         float reward = (float)(0.5 * (10 - (float)tm.RoundNumber()));
         if (reward < 0)
             reward = 0;
@@ -324,12 +324,9 @@ public class TurnBasedAgent : Agent
         EndEpisode();
         episodeCount++;
 
-        if(aac!=null)
-        {
-            aac.BattleRewardToMaze(7);
-            aac.ResumeMazeAgent();
-            aac.PauseBattleAgent();
-        }
+        aac.BattleRewardToMaze(7);
+        aac.ResumeMazeAgent();
+        aac.PauseBattleAgent();
     }
 
     public void AgentDefeat()
@@ -363,12 +360,9 @@ public class TurnBasedAgent : Agent
         //Debug.Log("EndEpisode");
         //if (ma != null)
         //    UnLoadScene();
-        if (aac != null)
-        {
-            aac.BattleRewardToMaze(-7);
-            aac.ResumeMazeAgent();
-            aac.PauseBattleAgent();
-        }
+        aac.BattleRewardToMaze(-7);
+        aac.ResumeMazeAgent();
+        aac.PauseBattleAgent();
     }
 
     public void UnLoadScene()

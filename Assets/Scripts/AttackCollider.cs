@@ -63,9 +63,9 @@ public class AttackCollider : MonoBehaviour
             
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("!!");
-        //gm.GM_pColliderHit();
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Debug.Log("!!");
+    //    //gm.GM_pColliderHit();
+    //}
 }

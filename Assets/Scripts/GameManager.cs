@@ -719,15 +719,14 @@ public class GameManager : MonoBehaviour
             catch (Exception e) { Debug.Log(e); }
 
             if (amountOfEnemyDefeat>=enemy.Count)
-                try
-                {
-                    if (autoReset)
-                        GameReset();
-                    //GameReset();
-                    //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
-                    tba.AgentVictory();
-                }
-                catch (Exception e) { Debug.Log(e); }
+            {
+                if (autoReset)
+                    GameReset();
+                //GameReset();
+                //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+                tba.AgentVictory();
+                Debug.Log("AgentVictory");
+            }
         }
         
         //if (!esList[0].IsItGrounded())
@@ -800,15 +799,12 @@ public class GameManager : MonoBehaviour
         {
             psmList[0].IsItDying(true);
             tm.Dying(player[0]);
-            try
-            {
-                if (autoReset)
-                    GameReset();
-                //GameReset();
-                //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
-                tba.AgentDefeat();
-            }
-            catch(Exception e) { Debug.Log(e); }
+            if (autoReset)
+                GameReset();
+            //GameReset();
+            //TurnBasedAgent tba = player[0].GetComponent<TurnBasedAgent>();
+            tba.AgentDefeat();
+            Debug.Log("AgentDefeat");
         }
         tba.AgentTurnEnd(false);
         Invoke("GM_eTurnEnd", 1f);

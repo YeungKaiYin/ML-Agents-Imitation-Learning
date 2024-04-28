@@ -13,45 +13,40 @@ using UnityEngine.SceneManagement;
 
 public class Agent_Level1 : Agent
 {    private Rigidbody2D agentRb;
-    public static bool getCheese = false;
-    bool isPaused=false;
-    int total_move;
+    bool getCheese = false;
     int count_episode;
-    int count_up;
-    int count_down;
-    int count_right;
-    int count_left;
     int count_getCheese;
     float getReward;
-    int count_coll_cat;
-    int count_not_move;
-    Boolean hit_wall;
     int count_goalWithOutCheese;
     string fileName = "";
     Vector2 contactPoint;
     float distanceToCheese;
     float distanceToGoal;
     public Sensor s1;
+    float stepPenalty;
+    int count_achive_goal;
+    float score;
 
     [SerializeField] private Transform CheeseTransform;
     [SerializeField] private Transform GoalTransform;
-    private Transform wallTransform;
+    [SerializeField] private Transform wallTransform;
+    private Transform CatTransform;
+    private Transform CatTransform1;
+    private Transform CatTransform2;
+    private Transform CatTransform3;
+    private Transform CatTransform4;
+
     bool human = true;
-    public OpeningManager om;
 
     public override void Initialize()
     {
         agentRb = GetComponent<Rigidbody2D>();
 
         count_episode = 0;
+        
+        //fileName = Application.dataPath + "/Level1_Test_T02.txt";
+        fileName = Application.dataPath + "/Level1_TrainedModel_Performance.txt";
 
-        fileName = Application.dataPath + "/Level1_ModelTrain01.txt";
-
-    }
-
-    public void HumanOrAI(bool tf)
-    {
-        human = tf;
     }
 
     public void Log(string msg, string stackTrace, LogType type)
@@ -68,15 +63,8 @@ public class Agent_Level1 : Agent
 
         agentRb.transform.position = new Vector2(-3.439f, 3.52f);
 
-        total_move = 0;
-        count_up = 0;
-        count_down = 0;
-        count_right = 0;
-        count_left = 0;
-        count_not_move = 0;
-        
         count_episode += 1;
-
+        
         getCheese = false;
         CheeseTransform.gameObject.SetActive(true);
 
@@ -88,92 +76,138 @@ public class Agent_Level1 : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(agentRb.transform.position);
-        
-        sensor.AddObservation(getCheese);
+    
 
         if(getCheese == false)
-        {   
+        {
+            
             sensor.AddObservation(CheeseTransform.transform.position);
+
             sensor.AddObservation(distanceToCheese);
 
         }else{
+            
             sensor.AddObservation(GoalTransform.transform.position);
+
             sensor.AddObservation(distanceToGoal);
         }
-        sensor.AddObservation(gameObject.transform.position);
-        sensor.AddObservation(s1.GetContactPoint());
 
+        sensor.AddObservation(gameObject.transform.position);
         
-        if(hit_wall == true)
+        if (CatTransform != null)
         {
-            sensor.AddObservation(1f);
+            sensor.AddObservation(CatTransform.transform.position);
         }
         else
         {
-            sensor.AddObservation(0f);
+        sensor.AddObservation(Vector2.zero); 
         }
+        if (CatTransform1 != null)
+        {
+            sensor.AddObservation(CatTransform1.transform.position);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+        }
+        if (CatTransform2 != null)
+        {
+            sensor.AddObservation(CatTransform2.transform.position);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+        }
+        if (CatTransform3 != null)
+        {
+            sensor.AddObservation(CatTransform3.transform.position);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+        }
+        if (CatTransform4 != null)
+        {
+            sensor.AddObservation(CatTransform4.transform.position);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+        }
+
+        sensor.AddObservation(gameObject.transform.position);
+        
+        sensor.AddObservation(s1.GetContactPoint());
+        
+        sensor.AddObservation(wallTransform);
+    }
+
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
     }
 
     public override void OnActionReceived(ActionBuffers actions)
-    {
+    {   
+
+        
         int movement = actions.DiscreteActions[0];
         
 
         float speed = 1f;
 
-        if (!human)
+        if (movement == 0)
         {
-            if (movement == 0)
-            {
 
-                agentRb.velocity += new Vector2(0, 1 * speed);
-                count_up += 1;
-                total_move += 1;
-            }
-            if (movement == 1)
-            {
-                agentRb.velocity += new Vector2(0, -1 * speed);
+            agentRb.velocity += new Vector2(0, 1 * speed);
 
-                count_down += 1;
-                total_move += 1;
-
-            }
-            if (movement == 2)
-            {
-
-                agentRb.velocity += new Vector2(-1 * speed, 0);
-                count_left += 1;
-                total_move += 1;
-
-            }
-            if (movement == 3)
-            {
-
-                agentRb.velocity += new Vector2(1 * speed, 0);
-                count_right += 1;
-                total_move += 1;
-
-            }
         }
-        
-        AddReward(-0.05f);
-    
+        if (movement == 1)
+        {
+            agentRb.velocity += new Vector2(0, -1 * speed);
+
+
+        }
+        if (movement == 2)
+        {
+
+            agentRb.velocity += new Vector2(-1 * speed, 0);
+
+        }
+        if (movement == 3)
+        {
+
+            agentRb.velocity += new Vector2(1 * speed, 0);
+
+
+        }
+
         distanceToCheese = Vector2.Distance(agentRb.transform.position, CheeseTransform.position);
         distanceToGoal = Vector2.Distance(agentRb.transform.position, GoalTransform.position);
         
-        if(getCheese == false){
-            if(distanceToCheese < 4.5f)
-            {
+        if(StepCount >= 500){
+
+            int getStepCount = 500;
+            AddReward(-100f);
+            getReward = GetCumulativeReward();
+            Debug.Log( "Episode = " + count_episode + " Number of steps = " + getStepCount + " Reward = " + getReward + " getCheese= " + count_getCheese + " Goal(!Cheese) = " + count_goalWithOutCheese +  " FinalGoal = " +count_achive_goal);
+            Application.logMessageReceived -= Log;
+            EndEpisode();
+        }else{
+            score = -0.5f;
+            score += score * 0.1f;
+            AddReward(score);
+        }
+
+        if(getCheese){
+            
+            if(distanceToGoal < 4f){
                 AddReward(1f);
             }
+
         }
-        else{
-            if(distanceToGoal < 4.5f)
-            {
-                AddReward(1f);
-            }
-        
-        }
+
+
 
     }
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -215,7 +249,7 @@ public class Agent_Level1 : Agent
         {
             getCheese = true;
             other.gameObject.SetActive(false);
-            SetReward(500);
+            AddReward(300);
             count_getCheese += 1;
         }
 
@@ -226,28 +260,27 @@ public class Agent_Level1 : Agent
     {   
         if(other.gameObject.tag == "cat1" || other.gameObject.tag == "cat2" || other.gameObject.tag == "cat3" || other.gameObject.tag == "cat4" || other.gameObject.tag == "cat5")
         {
-            SetReward(-100f);
+            AddReward(-100f);
             getReward = GetCumulativeReward();
-            count_coll_cat += 1;
-            Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
+            Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese + " Goal(!Cheese) = " + count_goalWithOutCheese +  " FinalGoal = " +count_achive_goal);
             Application.logMessageReceived -= Log;
             EndEpisode();
         }
 
         if (other.gameObject.tag == "Goal" && getCheese == true)
-        {
-            SetReward(1000f);
+        {   
+            count_achive_goal += 1;
+            AddReward(1000f);
             getReward = GetCumulativeReward();
-            Debug.Log("Episode = " + count_episode + " Total movement = " + total_move + " Move Up = " + count_up + " Move down = " + count_down + " Move right = " + count_right + " Move left = " + count_left+ " Choose stay = "+ count_not_move + " Reward = " + getReward + " Get Cheese or not = " + getCheese + " Collide with cat = " + count_coll_cat + " Hit wall = " + hit_wall + " Goal without cheese = " + count_goalWithOutCheese);
+            Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese + " Goal(!Cheese) = " + count_goalWithOutCheese +  " FinalGoal = " +count_achive_goal);
             Application.logMessageReceived -= Log;
             EndEpisode();
-
-            if (human)
-                om.LoadAIScene2WithCat();
+            if(human)
+                SceneManager.LoadScene("Level2_CMaze");
         }
         if (other.gameObject.tag == "Goal" && getCheese == false)
         {
-            SetReward(0f);
+            AddReward(10f);
             count_goalWithOutCheese += 1;
             
         }
@@ -257,9 +290,7 @@ public class Agent_Level1 : Agent
     {
         if(collision.gameObject.tag=="Wall")
         {   
-            hit_wall = true;
             wallTransform = collision.gameObject.transform;
-            AddReward(-0.05f);
             //Debug.Log(collision.contacts[0].point);
         }
     }
