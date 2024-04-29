@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using System.Security.Cryptography;
 using System.IO.Abstractions;
 using System.Linq;
+using UnityEngine.SceneManagement;
 public class Agent_Empty_Map : Agent
 {
     public Rigidbody2D agentRb;
@@ -46,6 +47,8 @@ public class Agent_Empty_Map : Agent
     [SerializeField]private Transform wallTransform;
     private static System.Random randomNumber;
     public AgentActiveContoller aac;
+
+    bool human = true;
 
     public override void Initialize()
     {
@@ -135,16 +138,19 @@ public class Agent_Empty_Map : Agent
         isPaused = tf;
     }
 
+    public void HumanOrAI(bool tf)
+    {
+        human = tf;
+    }
+
     public override void OnActionReceived(ActionBuffers actions)
     {
-
-        
         if (isPaused)
         {
             // Agent is paused, do not execute actions
             return;
         }
-        
+
 
 
         int movement = actions.DiscreteActions[0];
@@ -302,24 +308,24 @@ public class Agent_Empty_Map : Agent
                     randomNumber = new System.Random();
                     double margin = 89.0/100.0;
                     if(randomNumber.NextDouble() < margin)
-                {   
+                    {   
                 
-                AddReward(5f);
-                countbBattleWin += 1;
-                }
-                else
-                {
+                        AddReward(5f);
+                        countbBattleWin += 1;
+                    }
+                    else
+                    {
      
-                    AddReward(-100f);
-                    countBattleLose += 1;
-                    getReward = GetCumulativeReward();
-                    Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
-                    Application.logMessageReceived -= Log;
-                    EndEpisode();
+                        AddReward(-100f);
+                        countBattleLose += 1;
+                        getReward = GetCumulativeReward();
+                        Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
+                        Application.logMessageReceived -= Log;
+                        //EndEpisode();
 
+                    }
                 }
             }
-        }
 
         
 
@@ -332,8 +338,11 @@ public class Agent_Empty_Map : Agent
             Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
             Application.logMessageReceived -= Log;
             EndEpisode();
-            
-        }else if(other.gameObject.tag == "Goal" && getCheese == false){
+            if (human)
+                SceneManager.LoadScene("level3");
+
+        }
+        else if(other.gameObject.tag == "Goal" && getCheese == false){
 
             AddReward(10f);
             count_goalWithOutCheese += 1;

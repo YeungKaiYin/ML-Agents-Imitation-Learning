@@ -374,7 +374,7 @@ public class Agent_Level3 : Agent
                 getReward = GetCumulativeReward();
                 Debug.Log( "Episode = " + count_episode + " Number of steps = " + StepCount + " Reward = " + getReward + " getCheese= " + count_getCheese  + " Collide with cat = " + count_coll_cat  + " Goal(!Cheese) = " + count_goalWithOutCheese + " Battle Win = " + countbBattleWin + " Battle Lose = " + countBattleLose + " FinalGoal = " +count_achive_goal);
                 Application.logMessageReceived -= Log;
-                EndEpisode();
+                //EndEpisode();
 
                 }
             }
