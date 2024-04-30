@@ -15,9 +15,9 @@ public class MouseAgent : Agent
     private bool isButtonPushed;
     private bool interact;
     private int actionsReceived;
-    bool chess = false;
+    //bool chess = false;
 
-    TurnBasedAgent tba;
+    //TurnBasedAgent tba;
 
     public override void OnEpisodeBegin()
     {
@@ -104,7 +104,7 @@ public class MouseAgent : Agent
             if (isButtonPushed)
             {
                 SceneManager.LoadScene("Fight AgentTest", LoadSceneMode.Additive);
-                tba = GameObject.FindGameObjectWithTag("Player").GetComponent<TurnBasedAgent>();
+                //tba = GameObject.FindGameObjectWithTag("Player").GetComponent<TurnBasedAgent>();
             }
             else
             {

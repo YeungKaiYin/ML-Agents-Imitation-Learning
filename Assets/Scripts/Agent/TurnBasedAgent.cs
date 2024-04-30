@@ -12,15 +12,15 @@ public class TurnBasedAgent : Agent
 {
     [SerializeField]
     private int episodeCount = 0;
-    [SerializeField]
-    private int episodeLimit = 10000;
+    //[SerializeField]
+    //private int episodeLimit = 10000;
     public bool isPaused = true;
     public GameManager gm;
     public TurnManager tm;
     public LittleNightmare ln;
     int pAmount, eAmount;
-    MouseAgent ma;
-    bool cheeseGet = true;
+    //MouseAgent ma;
+    //bool cheeseGet = true;
     public AgentActiveContoller aac;
     public LineRenderer rewardLineRenderer, cheeseRemainLineRenderer, stepLineRenderer;
     public List<Vector3> r_curvePoints = new List<Vector3>();
@@ -34,15 +34,16 @@ public class TurnBasedAgent : Agent
 
     private void Awake()
     {
-        try
-        {
-            if (GameObject.FindGameObjectWithTag("Mouse"))
-                ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
-        }
-        catch (Exception e)
-        {
-            ma = null;
-        }
+        //try
+        //{
+        //    if (GameObject.FindGameObjectWithTag("Mouse"))
+        //        ma = GameObject.FindGameObjectWithTag("Mouse").GetComponent<MouseAgent>();
+        //}
+        //catch (Exception e)
+        //{
+        //    ma = null;
+        //    UnityEngine.Debug.Log(e);
+        //}
 
         if (!gm)
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -324,9 +325,12 @@ public class TurnBasedAgent : Agent
         EndEpisode();
         episodeCount++;
 
-        aac.BattleRewardToMaze(7);
-        aac.ResumeMazeAgent();
-        aac.PauseBattleAgent();
+        if(aac)
+        {
+            aac.BattleRewardToMaze(7);
+            aac.ResumeMazeAgent();
+            aac.PauseBattleAgent();
+        }
     }
 
     public void AgentDefeat()
@@ -370,8 +374,5 @@ public class TurnBasedAgent : Agent
         SceneManager.UnloadSceneAsync("Fight AgentTest");
     }
 
-    private void EndEditor()
-    {
-        EditorApplication.isPlaying = false;
-    }
+    
 }

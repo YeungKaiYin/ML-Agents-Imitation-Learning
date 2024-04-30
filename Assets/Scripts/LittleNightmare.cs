@@ -266,6 +266,7 @@ public class LittleNightmare : MonoBehaviour
 
     }
 
+    public GameObject m_upper, m_middle, m_lower,m_stand,m_mouse;
     public void AgentBladeAttack(String mode,int target)
     {
         try
@@ -281,6 +282,14 @@ public class LittleNightmare : MonoBehaviour
                 dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.3);
                 t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.2) + (float)((double)sm.GetSiz() * 0.2);
                 gm.AgentActionMark(dmg, t_dmg, target, "Lower");
+                if(m_lower)
+                {
+                    m_lower.SetActive(true);
+                    m_upper.SetActive(false);
+                    m_middle.SetActive(false);
+                    m_stand.SetActive(true);
+                    m_mouse.SetActive(false);
+                }
             }
             if (mode == "Middle")
             {
@@ -289,6 +298,14 @@ public class LittleNightmare : MonoBehaviour
                 dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.1);
                 t_dmg = sm.GetStr() + (float)((double)sm.GetCon() * 0.3) + (float)((double)sm.GetSiz() * 0.1) + (float)((double)sm.GetDex() * 0.3);
                 gm.AgentActionMark(dmg, t_dmg, target, "Middle");
+                if (m_lower)
+                {
+                    m_lower.SetActive(false);
+                    m_upper.SetActive(false);
+                    m_middle.SetActive(true);
+                    m_stand.SetActive(true);
+                    m_mouse.SetActive(false);
+                }
             }
             if (mode == "Upper")
             {
@@ -305,6 +322,14 @@ public class LittleNightmare : MonoBehaviour
                     t_dmg = (float)((double)sm.GetStr() * 0.2) + sm.GetSiz() + sm.GetSiz() + (float)((double)sm.GetCon() * 0.3);
                 }
                 gm.AgentActionMark(dmg, t_dmg, target, "Upper");
+                if (m_lower)
+                {
+                    m_lower.SetActive(false);
+                    m_upper.SetActive(true);
+                    m_middle.SetActive(false);
+                    m_stand.SetActive(true);
+                    m_mouse.SetActive(false);
+                }
             }
             if(mode=="Cheese_CatKibble")
             {
@@ -318,6 +343,14 @@ public class LittleNightmare : MonoBehaviour
                 }
                 sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Upper");
+                if (m_lower)
+                {
+                    m_lower.SetActive(false);
+                    m_upper.SetActive(true);
+                    m_middle.SetActive(false);
+                    m_stand.SetActive(false);
+                    m_mouse.SetActive(true);
+                }
             }
             if (mode == "Cheese_CatTeaserWand")
             {
@@ -331,6 +364,14 @@ public class LittleNightmare : MonoBehaviour
                 }
                 sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Lower");
+                if (m_lower)
+                {
+                    m_lower.SetActive(true);
+                    m_upper.SetActive(false);
+                    m_middle.SetActive(false);
+                    m_stand.SetActive(false);
+                    m_mouse.SetActive(true);
+                }
             }
             if (mode == "Cheese_CatBall")
             {
@@ -344,6 +385,14 @@ public class LittleNightmare : MonoBehaviour
                 }
                 sm.CheeseUse();
                 gm.AgentActionMark(dmg, t_dmg, target, "Middle");
+                if (m_lower)
+                {
+                    m_lower.SetActive(false);
+                    m_upper.SetActive(false);
+                    m_middle.SetActive(true);
+                    m_stand.SetActive(false);
+                    m_mouse.SetActive(true);
+                }
             }
         }
         catch (Exception e) { Debug.Log(e); }

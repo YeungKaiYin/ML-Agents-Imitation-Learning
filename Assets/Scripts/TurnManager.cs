@@ -281,7 +281,7 @@ public class TurnManager : MonoBehaviour
 
         roundDefault = 250;
         int round;
-        int roundCount = 0;
+        //int roundCount = 0;
 
         round = roundDefault;
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();

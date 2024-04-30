@@ -6,7 +6,7 @@ public class MouseStandGameObjectControllByAnimator : MonoBehaviour
 {
     public GameObject cheese,effect;
     public List<GameObject> ms;
-    bool isPlaying=false;
+    //bool isPlaying=false;
 
     public void DisableMouseStand()
     {
@@ -40,13 +40,13 @@ public class MouseStandGameObjectControllByAnimator : MonoBehaviour
         effect.SetActive(true);
     }
 
-    public void Playing()
-    {
-        isPlaying = true;
-    }
+    //public void Playing()
+    //{
+    //    isPlaying = true;
+    //}
 
-    public void Played()
-    {
-        isPlaying = false;
-    }
+    //public void Played()
+    //{
+    //    isPlaying = false;
+    //}
 }
